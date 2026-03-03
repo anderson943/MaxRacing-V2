@@ -76,7 +76,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
     description: "Everything you need to know about installing your damper.",
     items: [
       { question: "Is the MaxRacing damper easy to install?", answer: "Most riders with basic mechanical experience and tools can install the kit in 30–60 minutes. We provide detailed guide instructions for every bike-specific kit." },
-      { question: "Do I need to modify my motorcycle to install a MaxRacing damper?", answer: "Our kits are designed to be 'plug-and-play.' No drilling, cutting, or permanent modification is required for our model-specific bolt-on kits." },
+      { question: "Do I need to modify my motorcycle to install a MaxRacing damper?", answer: "Most kits are designed to be 'plug-and-play.' No drilling, cutting, or permanent modification is required; however, a few kits require plastic trimming. If plastic trimming is necessary, it is noted in the product description." },
       { question: "Where can I find detailed installation instructions?", answer: "Each kit includes high-resolution digital instructions. You can also view our general installation guide on the website." },
       { question: "What torque settings should I use for MaxRacing hardware?", answer: "Typically, 10Nm for M6 bolts and 22Nm for M8 bolts. Always refer to your specific kit instructions for exact torque values." },
     ]
