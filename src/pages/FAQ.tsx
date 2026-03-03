@@ -32,7 +32,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
       { question: "How does MaxRacing compare on materials to Öhlins, Hyperpro, Bitubo, GPR?", answer: "MaxRacing uses premium Aluminium 7075-T6, often surpassing the standard 6061 billet aluminum used by some competitors. We combine this high-grade alloy with advanced surface coatings to ensure superior strength and consistency." },
       { question: "How long can I expect a MaxRacing damper to last?", answer: "MaxRacing dampers are engineered for long-term durability. We have numerous reports from long-term customers who have been using the same equipment for more than 15 years. Routine maintenance is not required; contact support if leaking oil or loss of pressure. The unit will be replaced." },
       { question: "Are MaxRacing parts made locally or overseas?", answer: "MaxRacing components are engineered, produced and assembled in-house by our specialized team, ensuring that every damper meets our strict internal tolerances before it reaches your machine." },
-      { question: "Does MaxRacing offer products other than steering dampers?", answer: "Yes. While steering dampers are our core expertise, we also engineer high-performance clip-ons (semihandlebars), adjustable rearsets, bar clamps, and CNC-machined levers." },
+      { question: "Does MaxRacing offer products other than steering dampers?", answer: "Yes. While steering dampers are our core expertise, we also engineer high-performance clip-ons (semihandlebars) and adjustable rearsets." },
       { question: "Does MaxRacing offer semihandlebars (clip-ons)?", answer: "Yes, we offer CNC-machined adjustable clip-ons designed for both track and street use, providing superior ergonomics and durability." },
     ]
   },
