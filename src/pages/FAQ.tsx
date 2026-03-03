@@ -68,7 +68,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
       { question: "How do I know if a MaxRacing damper fits my motorcycle?", answer: "Use our Fitment Guide tool. It contains hundreds of confirmed applications by year, make, and model." },
       { question: "What types of mounting systems does MaxRacing offer?", answer: "We offer both Top-Mount kits (above the triple clamp) and various side-mount or frame-mount kits depending on your specific motorcycle geometry." },
       { question: "Do MaxRacing kits include everything I need?", answer: "Yes. Our bike-specific kits include the damper body, model-specific mounting brackets, and all necessary hardware for installation." },
-      { question: "Can I use a MaxRacing damper on a custom or universal build?", answer: "Yes, we offer universal kits and individual components for custom projects, though some fabrication of mounting points may be required." },
+      { question: "Can I use a MaxRacing damper on a custom build?", answer: "No, we do not offer universal kits. All MaxRacing steering dampers are designed with bike-specific mounting hardware to ensure perfect fitment and safety geometry." },
     ]
   },
   {
@@ -77,7 +77,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
     items: [
       { question: "Is the MaxRacing damper easy to install?", answer: "Most riders with basic mechanical experience and tools can install the kit in 30–60 minutes. We provide detailed guide instructions for every bike-specific kit." },
       { question: "Do I need to modify my motorcycle to install a MaxRacing damper?", answer: "Our kits are designed to be 'plug-and-play.' No drilling, cutting, or permanent modification is required for our model-specific bolt-on kits." },
-      { question: "Where can I find detailed installation instructions?", answer: "Each kit includes high-resolution digital instructions. You can also view our universal installation guide on the website." },
+      { question: "Where can I find detailed installation instructions?", answer: "Each kit includes high-resolution digital instructions. You can also view our general installation guide on the website." },
       { question: "What torque settings should I use for MaxRacing hardware?", answer: "Typically, 10Nm for M6 bolts and 22Nm for M8 bolts. Always refer to your specific kit instructions for exact torque values." },
     ]
   },

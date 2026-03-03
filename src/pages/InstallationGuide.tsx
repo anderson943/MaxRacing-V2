@@ -164,11 +164,11 @@ const InstallationGuide = () => {
               Technical Documentation
             </span>
             <h1 className="font-heading text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-              Universal Installation{" "}
+              General Installation{" "}
               <span className="text-gradient-metallic">Guide</span>
             </h1>
             <p className="mt-4 max-w-2xl font-body text-lg text-muted-foreground">
-              MaxRacing Steering Dampers — Complete mounting and setup instructions for all universal kits.
+              MaxRacing Steering Dampers — Complete mounting and setup guidelines.
             </p>
             <Button
               className="mt-6 font-heading tracking-wider uppercase"
@@ -214,7 +214,7 @@ const InstallationGuide = () => {
             <GuideSection id="important-notice" icon={<AlertTriangle className="h-6 w-6 text-primary" />} title="Important Notice">
               <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
                 <p className="font-body text-muted-foreground leading-relaxed">
-                  This guide provides <strong className="text-foreground">universal installation instructions</strong> for MaxRacing hydraulic steering dampers. Every motorcycle model is different — bracket geometry, handlebar angle, and frame clearance will vary.
+                  This guide provides <strong className="text-foreground">general installation guidelines</strong> for MaxRacing hydraulic steering dampers. Every motorcycle model is different — bracket geometry, handlebar angle, and frame clearance will vary.
                 </p>
                 <p className="mt-3 font-body text-muted-foreground leading-relaxed">
                   Always refer to your <strong className="text-foreground">vehicle-specific kit instructions</strong> (if included) before proceeding. If you are unsure about any step, consult a qualified motorcycle technician.

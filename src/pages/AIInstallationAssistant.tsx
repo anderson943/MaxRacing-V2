@@ -46,7 +46,7 @@ You have access to the official MaxRacing installation manuals. Below is the com
 
 ### MAX10 & MAX20 INSTALLATION
 
-**Manual ID:** MR-SD-UNIVERSAL-001
+<p className="text-muted-foreground">**Manual ID:** MR-SD-MAX20-001</p>
 
 **Product Compatibility:** All MaxRacing hydraulic steering dampers with CNC mounting brackets.
 
