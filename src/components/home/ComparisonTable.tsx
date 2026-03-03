@@ -150,7 +150,7 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   },
   {
     feature: "Maintenance Guidance",
-    maxracing: "Routine maintenance is generally not required; contact support if leaking oil or loss of pressure|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "Routine maintenance is not required; if leaking oil or loss of pressure, it will be promptly substituted.|Hauer:https://hauerimports.com/pages/maxracing-faqs",
     ohlins: "Manual provides service intervals (road km / track hours) and warns of leakage/irregular function|Öhlins:https://ohlins.pl/sites/default/files/om_07261-01.pdf",
     hyperpro: "Rebuildable with spare parts availability is listed as a feature|Hyperpro:https://hyperpro.com/steering-dampers/",
     gpr: "Recommends annual oil changes; warns oil expires and old oil can cause internal wear/damage|GPR:https://www.gprstabilizer.com/support/",

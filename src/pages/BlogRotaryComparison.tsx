@@ -268,7 +268,7 @@ const BlogRotaryComparison = () => {
 
                     <SectionHeading>5) Maintenance: "Set and Forget" vs "Service like Suspension"</SectionHeading>
                     <div className="space-y-6 font-body text-muted-foreground">
-                        <p><strong>MaxRacing:</strong> Hauer says routine maintenance is generally not required; contact support if oil leaks or adjustment pressure is lost.</p>
+                        <p><strong>MaxRacing:</strong> Routine maintenance is not required; if leaking oil or loss of pressure, it will be promptly substituted.</p>
                         <p><strong>GPR:</strong> Explicitly recommends annual oil changes and warns bad oil is the fastest way to ruin the stabilizer.</p>
                         <p><strong>Scotts:</strong> Publishes detailed service manual for oil changes, bleeding, and seal replacements to avoid fade when hot.</p>
                     </div>
