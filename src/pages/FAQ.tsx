@@ -44,7 +44,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
       { question: "What is a tank slapper and how does a steering damper prevent it?", answer: "A tank slapper is a violent oscillation of the handlebars. A hydraulic damper absorbs the energy of these sudden movements through precision valving, slowing the oscillation before it becomes uncontrollable." },
       { question: "How does the MaxRacing hydraulic damping system work internally?", answer: "It uses a speed-sensitive piston. At low speeds (turning), oil passes freely through large ports. At high speeds (impacts), the oil is forced through smaller calibrated orifices, creating resistance that stabilizes the front end." },
       { question: "What is progressive damping?", answer: "Unlike friction dampers which provide constant resistance, progressive hydraulic damping increases resistance exponentially as the speed of the handlebar movement increases." },
-      { question: "Do I need a steering damper for street riding or only track use?", answer: "Both. While track use involves higher speeds, city streets often have potholes, ruts, and expansion joints that can trigger instability. A damper provides a safety net for both environments." },
+      { question: "Do I need a steering damper for street riding or only track use?", answer: "Both. While track use involves higher speeds, city streets often have potholes, ruts, and expansion joints that can trigger instability regardless of speed. A damper provides a safety net for both environments." },
     ]
   },
   {
