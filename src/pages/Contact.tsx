@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Instagram, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,11 @@ const Contact = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Contact MaxRacing | Support & Technical Inquiries</title>
+        <meta name="description" content="Have questions about steering damper fitment or compatibility? Contact the MaxRacing technical support team for expert advice and assistance." />
+        <link rel="canonical" href="https://www.maxracing.us/contact" />
+      </Helmet>
       <section className="py-24">
         <div className="container">
           <motion.div

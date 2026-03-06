@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 
 const placeholderPosts = [
@@ -74,6 +75,11 @@ const placeholderPosts = [
 const Blog = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>MaxRacing Blog | Technical Guides & Motorcycle Stability</title>
+        <meta name="description" content="Expert insights on motorcycle stability, steering damper technology, and track day setup. Read official technical guides from MaxRacing engineering." />
+        <link rel="canonical" href="https://www.maxracing.us/blog" />
+      </Helmet>
       <div className="min-h-screen bg-background pt-24 pb-20">
         <div className="container">
           <div className="mb-12 text-center">

@@ -75,17 +75,17 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
     title: "Installation",
     description: "Everything you need to know about installing your damper.",
     items: [
-      { question: "Is the MaxRacing damper easy to install?", answer: "Most riders with basic mechanical experience and tools can install the kit in 30–60 minutes. We provide detailed guide instructions for every bike-specific kit." },
-      { question: "Do I need to modify my motorcycle to install a MaxRacing damper?", answer: "Most kits are designed to be 'plug-and-play.' No drilling, cutting, or permanent modification is required; however, a few kits require plastic trimming (this will be explicitly stated in the product description)." },
-      { question: "Where can I find detailed installation instructions?", answer: "Each kit includes high-resolution digital instructions. You can also view our general installation guide on the website." },
+      { question: "Is the MaxRacing damper easy to install?", answer: "Most riders with basic mechanical experience and tools can install the kit in 30–60 minutes. We provide instructions for every bike-specific kit." },
+      { question: "Do I need to modify my motorcycle to install a MaxRacing damper?", answer: "Most kits are designed to be 'plug-and-play.' No drilling, cutting, or permanent modification is required, however a few kits require plastic trimming." },
       { question: "What torque settings should I use for MaxRacing hardware?", answer: "Typically, 10Nm for M6 bolts and 22Nm for M8 bolts. Always refer to your specific kit instructions for exact torque values." },
+      { question: "Do I need to use threadlocker when installing my MaxRacing sports rearset?", answer: "Yes. The use of threadlocker is absolutely necessary on all bolts when installing your MaxRacing sports rearset. There will be no replacement of lost parts due to the lack of this product." },
     ]
   },
   {
     title: "Adjustment & Tuning",
     description: "Get the most out of your steering damper.",
     items: [
-      { question: "How do I adjust the damping on my MaxRacing steering damper?", answer: "Simple. Turn the knurled dial on top of the damper. Clockwise increases resistance (stiffer); counter-clockwise decreases it (softer)." },
+      { question: "How do I adjust the damping on my MaxRacing steering damper?", answer: "Simple. Turn the dial on top of the damper. Clockwise increases resistance (stiffer); counter-clockwise decreases it (softer)." },
       { question: "What damping setting should I use for city riding vs. track riding?", answer: "For city riding, use settings 1–6 (low resistance). For track days or aggressive canyon riding, use settings 14–20 (high resistance)." },
       { question: "Can I adjust the damper while riding?", answer: "Yes, the adjuster is designed to be easily manipulated with gloves. However, we recommend adjusting your settings while stopped for maximum safety." },
       { question: "Does temperature affect damping performance?", answer: "As with all hydraulic systems, extreme temperature changes can slightly affect oil viscosity. MaxRacing uses high-grade synthetic oil to ensure consistent performance across a wide range of riding temperatures." },
@@ -95,8 +95,8 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
     title: "Maintenance & Longevity",
     description: "Keep your damper performing at its best.",
     items: [
-      { question: "Do MaxRacing dampers require maintenance?", answer: "Yes. To maintain peak performance, we recommend a basic service (oil and seal check) every 15,000–20,000 miles, or seasonally for track-only machines." },
-      { question: "How long do MaxRacing dampers last?", answer: "Because they are rebuildable, a MaxRacing damper can last the lifetime of your motorcycle with proper care and regular service." },
+      { question: "Do MaxRacing dampers require maintenance?", answer: "Routine maintenance is not required; if leaking oil or loss of pressure, it will be promptly substituted." },
+      { question: "How long do MaxRacing dampers last?", answer: "It lasts for many years, or even more than a decade, as long as it is used properly. The secret is not to force the handlebars, especially with the adjustment above level 6. Therefore, we recommend returning the adjustment to level 0 whenever you are not riding." },
       { question: "Can a MaxRacing damper be rebuilt or serviced?", answer: "Yes. Seals, oil, and internal components are all replaceable. We offer service kits or can perform the rebuild at our facility." },
       { question: "How should I clean my MaxRacing damper?", answer: "Use a clean rag and mild degreaser. Avoid high-pressure water near the seals and do not use harsh chemicals that can damage the anodized finish." },
     ]
@@ -105,7 +105,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
     title: "Ordering & Dealer Program",
     description: "Information about purchasing and becoming a dealer.",
     items: [
-      { question: "How can I purchase a MaxRacing steering damper?", answer: "You can purchase directly from maxracing.us or through our network of authorized motorcycle dealers and workshops." },
+      { question: "How can I purchase MaxRacing products?", answer: "You can purchase directly from our network of authorized motorcycle dealers and workshops or click on the SHOP link in the main menu." },
       { question: "Does MaxRacing offer wholesale or dealer pricing?", answer: "Yes. We have a robust Dealer Program with tiered wholesale pricing for businesses and workshops." },
       { question: "What are the benefits of becoming a MaxRacing dealer?", answer: "Benefits include aggressive margins, marketing assets, dedicated support, and global shipping support." },
       { question: "Does MaxRacing ship internationally?", answer: "Yes, we provide worldwide shipping with reliable logistics and full customs documentation." },

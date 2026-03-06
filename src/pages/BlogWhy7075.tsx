@@ -247,7 +247,8 @@ const BlogWhy7075 = () => {
                                     <p className="text-sm text-muted-foreground italic mb-4">
                                         "MaxRacing uses specialized industrial anodizing designed for the humid and varied road conditions of Brazil."
                                     </p>
-                                    <Link to="https://hauerimports.com/pages/maxracing-faqs" target="_blank" className="text-xs text-primary underline">Verify Specification</Link>
+                                    <Link to="/faq" className="text-xs text-primary underline">Verify Specification</Link>
+
                                 </div>
                             </div>
                         </div>
@@ -307,7 +308,7 @@ const BlogWhy7075 = () => {
                             <Link to="/fitment-guide">CHECK COMPATIBILITY</Link>
                         </Button>
                         <Button asChild size="lg">
-                            <a href="https://hauerimports.com/" target="_blank" rel="noopener noreferrer">SHOP THE MAX SERIES</a>
+                            <Link to="/shop">SHOP THE MAX SERIES</Link>
                         </Button>
                     </div>
                 </section>

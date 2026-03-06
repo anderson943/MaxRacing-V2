@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Shop", path: "https://hauerimports.com/", external: true },
+  { label: "Shop", path: "/shop" },
   { label: "Fitment Guide", path: "/fitment-guide" },
   { label: "Engineering", path: "/engineering" },
   { label: "About", path: "/about" },
@@ -52,7 +52,7 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => {
-            if (link.external) {
+            if ("external" in link && link.external) {
               return (
                 <a
                   key={link.path}
@@ -71,9 +71,8 @@ const Header = () => {
                 <div key={link.label} className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setSupportOpen((o) => !o)}
-                    className={`inline-flex items-center gap-1 font-heading text-sm tracking-widest uppercase transition-colors hover:text-primary ${
-                      isActive ? "text-primary" : "text-muted-foreground"
-                    }`}
+                    className={`inline-flex items-center gap-1 font-heading text-sm tracking-widest uppercase transition-colors hover:text-primary ${isActive ? "text-primary" : "text-muted-foreground"
+                      }`}
                   >
                     {link.label}
                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${supportOpen ? "rotate-180" : ""}`} />
@@ -92,9 +91,8 @@ const Header = () => {
                             key={item.path}
                             to={item.path}
                             onClick={() => setSupportOpen(false)}
-                            className={`block px-4 py-2.5 font-heading text-xs tracking-widest uppercase transition-colors hover:bg-primary/10 hover:text-primary ${
-                              location.pathname === item.path ? "text-primary" : "text-muted-foreground"
-                            }`}
+                            className={`block px-4 py-2.5 font-heading text-xs tracking-widest uppercase transition-colors hover:bg-primary/10 hover:text-primary ${location.pathname === item.path ? "text-primary" : "text-muted-foreground"
+                              }`}
                           >
                             {item.label}
                           </Link>
@@ -109,9 +107,8 @@ const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-heading text-sm tracking-widest uppercase transition-colors hover:text-primary ${
-                  location.pathname === link.path ? "text-primary" : "text-muted-foreground"
-                }`}
+                className={`font-heading text-sm tracking-widest uppercase transition-colors hover:text-primary ${location.pathname === link.path ? "text-primary" : "text-muted-foreground"
+                  }`}
               >
                 {link.label}
               </Link>
@@ -147,7 +144,7 @@ const Header = () => {
           >
             <nav className="container flex flex-col gap-4 py-6">
               {navLinks.map((link) => {
-                if (link.external) {
+                if ("external" in link && link.external) {
                   return (
                     <a
                       key={link.path}
@@ -184,9 +181,8 @@ const Header = () => {
                                 key={item.path}
                                 to={item.path}
                                 onClick={() => { setMobileOpen(false); setMobileSupportOpen(false); }}
-                                className={`font-heading text-base tracking-widest uppercase transition-colors hover:text-primary ${
-                                  location.pathname === item.path ? "text-primary" : "text-muted-foreground"
-                                }`}
+                                className={`font-heading text-base tracking-widest uppercase transition-colors hover:text-primary ${location.pathname === item.path ? "text-primary" : "text-muted-foreground"
+                                  }`}
                               >
                                 {item.label}
                               </Link>
@@ -202,9 +198,8 @@ const Header = () => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setMobileOpen(false)}
-                    className={`font-heading text-lg tracking-widest uppercase transition-colors hover:text-primary ${
-                      location.pathname === link.path ? "text-primary" : "text-muted-foreground"
-                    }`}
+                    className={`font-heading text-lg tracking-widest uppercase transition-colors hover:text-primary ${location.pathname === link.path ? "text-primary" : "text-muted-foreground"
+                      }`}
                   >
                     {link.label}
                   </Link>

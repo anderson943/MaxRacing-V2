@@ -66,7 +66,7 @@ const HeroSection = () => {
               size="lg"
               className="min-w-[200px] font-heading text-base tracking-wider uppercase border-metallic-dark text-metallic hover:bg-secondary hover:text-foreground"
             >
-              <a href="https://hauerimports.com/" target="_blank" rel="noopener noreferrer">Explore Dampers</a>
+              <Link to="/shop">Explore Dampers</Link>
             </Button>
           </motion.div>
         </div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, X, Minus, Info, HelpCircle, ExternalLink, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -47,8 +48,9 @@ const brandLabels: Record<(typeof brands)[number], string> = {
   generic: "Generic",
 };
 const brandRefs: Partial<Record<(typeof brands)[number], string>> = {
-  maxracing: "https://hauerimports.com/pages/maxracing-faqs",
+  maxracing: "/shop",
   ohlins: "https://www.ohlins.com/about-us/news/steering-damper-sd20",
+
   hyperpro: "https://hyperpro.com/steering-dampers/",
   gpr: "https://www.gprstabilizer.com/products/gpr-v5s-street-bike-stabilizer-kits/",
   scotts: "https://www.scottsonline.com/Stabilizer_Purchase2.php?BI_ID=952888&Bike_ID=7311",
@@ -66,7 +68,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   },
   {
     feature: "Warranty",
-    maxracing: "3 Years|Article:/blog/warranty-comparison|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "3 Years|Article:/blog/warranty-comparison|FAQ:/faq",
+
     ohlins: "2-5 Years|Öhlins:https://www.ohlinsusa.com/support/warranty",
     hyperpro: "2 Years|Hyperpro:https://hyperpro.com/steering-dampers/",
     gpr: "90 Days|GPR:https://www.gprstabilizer.com/support/faqs/",
@@ -95,7 +98,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   {
     feature: "Rebuildable / Serviceable",
     tooltip: "Serviceable = has a defined service path (support/service center, service form, or documented servicing like oil/seal work).\n\nRebuildable = intended to be opened/restored with internal wear parts replaced (seals/O-rings/etc.), ideally with spare parts/rebuild support.",
-    maxracing: "Serviceable / Rebuildable|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "Serviceable / Rebuildable|FAQ:/faq",
+
     ohlins: "Serviceable / Rebuildable ❓|Service:https://www.ohlins.com/service-centers",
     hyperpro: "Serviceable / Rebuildable|Service:https://hyperpro.com/steering-dampers/",
     gpr: "Serviceable / Rebuildable ❓|Support:https://www.gprstabilizer.com/support/",
@@ -114,7 +118,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   {
     feature: "Construction Material",
     tooltip: "The specific aluminum alloy grade used for the damper body and mounting hardware.",
-    maxracing: "Aerospace Grade Aluminium - High Yield Strength (Alloy 7075-T6)|Article:/blog/why-7075-aluminum|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "Aerospace Grade Aluminium - High Yield Strength (Alloy 7075-T6)|Article:/blog/why-7075-aluminum|FAQ:/faq",
+
     ohlins: "Not publicly specified",
     hyperpro: "Not publicly specified",
     gpr: "Structural Grade - General Purpose (Alloy 6061-T6)|GPR:https://www.gprstabilizer.com/products/gpr-v5s-street-bike-stabilizer-kits/",
@@ -123,7 +128,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   },
   {
     feature: "Colors",
-    maxracing: "7 (49 Combos)|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "7 (49 Combos)|Shop:/shop",
+
     ohlins: "Limited",
     hyperpro: "Limited",
     gpr: "Limited",
@@ -132,7 +138,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   },
   {
     feature: "Architecture / Form Factor",
-    maxracing: "Handlebar-mounted rotary stabilizer with bike-specific brackets; under-/over-bar mounting affects clearance/fitment|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "Handlebar-mounted rotary stabilizer with bike-specific brackets; under-/over-bar mounting affects clearance/fitment|FAQ:/faq",
+
     ohlins: "Linear hydraulic damper (shaft + piston in cylinder), mounted across the front end|Öhlins:https://ohlins.pl/sites/default/files/om_07261-01.pdf",
     hyperpro: "Linear hydraulic damper range (CSC); RSC operates like a linear damper in normal riding|Hyperpro:https://hyperpro.com/steering-dampers/",
     gpr: "Rotary steering stabilizer (V-series kits), typically stem/handlebar-area mounted with model-specific hardware|GPR:https://www.gprstabilizer.com/products/",
@@ -141,7 +148,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   },
   {
     feature: "Damping Principle",
-    maxracing: "Hydraulic damping adds steering resistance to reduce wobble/shimmy and improve stability|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "Hydraulic damping adds steering resistance to reduce wobble/shimmy and improve stability|FAQ:/faq",
+
     ohlins: "Piston-driven hydraulic damping; oil is forced through passages with an adjustable valve; pressurized reservoir handles volume changes|Öhlins:https://ohlins.pl/sites/default/files/om_07261-01.pdf",
     hyperpro: "Linear hydraulic damping (CSC); RSC adds progressive damping response for rapid, high-speed steering events|Hyperpro:https://hyperpro.com/steering-dampers/",
     gpr: "Patented rotary hydraulic damping with fluid control, designed specifically to resist rotary steering motion|GPR:https://www.gprstabilizer.com/products/",
@@ -150,7 +158,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   },
   {
     feature: "Maintenance Guidance",
-    maxracing: "Routine maintenance is not required; if leaking oil or loss of pressure, it will be promptly substituted.|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "Routine maintenance is not required; if leaking oil or loss of pressure, it will be promptly substituted.|FAQ:/faq",
+
     ohlins: "Manual provides service intervals (road km / track hours) and warns of leakage/irregular function|Öhlins:https://ohlins.pl/sites/default/files/om_07261-01.pdf",
     hyperpro: "Rebuildable with spare parts availability is listed as a feature|Hyperpro:https://hyperpro.com/steering-dampers/",
     gpr: "Recommends annual oil changes; warns oil expires and old oil can cause internal wear/damage|GPR:https://www.gprstabilizer.com/support/",
@@ -160,7 +169,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   {
     feature: "Common Issues / Failures",
     tooltip: "Warranty exclusions or issues explicitly acknowledged by the brand.",
-    maxracing: "Warranty excludes accidents, improper installation, or unauthorized modifications|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "Warranty excludes accidents, improper installation, or unauthorized modifications|FAQ:/faq",
+
     ohlins: "Manual warns leakage/irregular function requires service and notes the damper affects stability|Öhlins:https://ohlins.pl/sites/default/files/om_07261-01.pdf",
     hyperpro: "Mentions sealing + nitrogen pressurized reservoir to prevent foaming (mitigating performance loss)|Hyperpro:https://hyperpro.com/steering-dampers/",
     gpr: "Warns old oil/o-rings lead to wear; service is critical; also has strict warranty rules related to mounts|GPR:https://www.gprstabilizer.com/support/",
@@ -169,7 +179,8 @@ const DEFAULT_FEATURES: FeatureRow[] = [
   },
   {
     feature: "Adjuster Clicks",
-    maxracing: "20|Hauer:https://hauerimports.com/pages/maxracing-faqs",
+    maxracing: "20|Shop:/shop",
+
     ohlins: "16–20|Öhlins:https://ohlins.pl/sites/default/files/om_07261-01.pdf",
     hyperpro: "22|Hyperpro:https://hyperpro.com/steering-dampers/",
     gpr: "20|GPR:https://www.gprstabilizer.com/products/",
@@ -223,16 +234,15 @@ const StatusIcon = ({ value }: { value: CellValue }) => {
         <span className="font-body text-xs text-center text-foreground">{cleanedText}</span>
         <div className="flex flex-wrap justify-center gap-x-2 gap-y-1">
           {links.map((link, idx) => (
-            <a
+            <Link
               key={idx}
-              href={link.url}
-              target={link.url.startsWith("http") ? "_blank" : "_self"}
-              rel={link.url.startsWith("http") ? "noopener noreferrer" : ""}
+              to={link.url}
               className="inline-flex items-center gap-0.5 text-[10px] text-primary hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
               {link.label} {link.url.startsWith("http") && <ExternalLink className="h-2 w-2" />}
-            </a>
+            </Link>
+
           ))}
         </div>
       </div>
@@ -279,9 +289,9 @@ const FeatureLabel = ({ row }: { row: FeatureRow }) => {
 
   if (row.feature === "Price Position") {
     return (
-      <a href="https://hauerimports.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+      <Link to="/shop" className="hover:underline">
         {labelContent}
-      </a>
+      </Link>
     );
   }
 

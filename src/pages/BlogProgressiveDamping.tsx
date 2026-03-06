@@ -186,8 +186,9 @@ const BlogProgressiveDamping = () => {
                                     These use a different rotary architecture focused on separating normal steering feel from high-speed hit control.
                                 </p>
                                 <div className="flex gap-4">
-                                    <a href="https://www.gprstabilizer.com/products/" target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">GPR Products</a>
-                                    <a href="https://www.scottsonline.com/scotts.php" target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">Scotts Products</a>
+                                    <Link to="/shop" className="text-xs text-primary hover:underline">GPR Products</Link>
+                                    <Link to="/shop" className="text-xs text-primary hover:underline">Scotts Products</Link>
+
                                 </div>
                             </div>
                         </div>
@@ -205,22 +206,21 @@ const BlogProgressiveDamping = () => {
                                 >
                                     FITMENT GUIDE
                                 </Link>
-                                <a
-                                    href="https://hauerimports.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-8 py-4 font-heading text-sm tracking-wider text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02]"
+                                <Link
+                                    to="/shop"
+                                    className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02]"
                                 >
                                     SHOP DAMPERS <ChevronRight className="h-4 w-4" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
                         <div className="mt-16 pt-8 border-t border-border/30">
                             <h5 className="font-heading text-xs tracking-widest text-muted-foreground uppercase mb-4">Official Retailer</h5>
-                            <a href="https://hauerimports.com/collections/maxracing" target="_blank" rel="noopener noreferrer" className="font-body text-primary hover:underline">
-                                Shop MaxRacing at Hauer Imports
-                            </a>
+                            <Link to="/shop" className="font-body text-primary hover:underline">
+                                Shop MaxRacing at Official Store
+                            </Link>
+
                         </div>
                     </motion.div>
                 </div>

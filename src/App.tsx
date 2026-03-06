@@ -3,11 +3,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Index from "./pages/Index";
 import FitmentGuide from "./pages/FitmentGuide";
 import BecomeADealer from "./pages/BecomeADealer";
+import Shop from "./pages/Shop";
 import Engineering from "./pages/Engineering";
 import ExploreDampers from "./pages/ExploreDampers";
 import About from "./pages/About";
@@ -28,12 +29,6 @@ import NotFound from "./pages/NotFound";
 import AIInstallationAssistant from "./pages/AIInstallationAssistant";
 
 const queryClient = new QueryClient();
-const ShopRedirect = () => {
-  useEffect(() => {
-    window.location.href = "https://hauerimports.com/";
-  }, []);
-  return null;
-};
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -44,10 +39,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/fitment-guide" element={<FitmentGuide />} />
-          <Route path="/shop" element={<ShopRedirect />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/become-a-dealer" element={<BecomeADealer />} />
           <Route path="/engineering" element={<Engineering />} />
-          <Route path="/explore-dampers" element={<ShopRedirect />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/handlebar-shaking" element={<BlogHandlebarShaking />} />

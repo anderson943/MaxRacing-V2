@@ -1,0 +1,46 @@
+[
+    {
+        "id": "hauer-imports",
+        "name": "Hauer Imports",
+        "country": "United States Of America",
+        "region": "North America",
+        "website": "https://hauerimports.com",
+        "email": "info@hauerimports.com",
+        "whatsapp": "",
+        "cityState": "Florida",
+        "tags": [
+            "Primary Seller",
+            "International Shipping",
+            "Authorized Dealer"
+        ],
+        "description": "Main authorized seller for the USA and international orders."
+    },
+    {
+        "id": "cs-racing",
+        "name": "CS Racing",
+        "country": "United States Of America",
+        "region": "North America",
+        "website": "https://csracingusa.com/",
+        "email": "",
+        "whatsapp": "",
+        "cityState": "",
+        "tags": [
+            "Authorized Dealer"
+        ],
+        "description": "Contact details coming soon."
+    },
+    {
+        "id": "alquimim",
+        "name": "Alquimim",
+        "country": "Brazil",
+        "region": "South America",
+        "website": "https://www.mercadolivre.com.br/pagina/motopartsalquimim?item_id=MLB4029292994&category_id=MLB443874&seller_id=490225208&client=recoview-selleritems&recos_listing=true&matt_tool=26344982&matt_word=Default_URL_MLB&matt_source=google&matt_campaign_id=11297243419&matt_ad_group_id=111150047976&matt_match_type=&matt_network=g&matt_device=c&matt_creative=528938304663&matt_keyword=&matt_ad_position=&matt_ad_type=&matt_merchant_id=&matt_product_id=&matt_product_partition_id=&matt_target_id=dsa-19959388920&cq_src=google_ads&cq_cmp=11297243419&cq_net=g&cq_plt=gp&cq_med=&gad_source=1&gad_campaignid=11297243419&gbraid=0AAAAAD93qcA-9HbyvQnnEkVzEjJMQSs2f&gclid=EAIaIQobChMIr_vOsNWGkwMVgWdIAB0JlDo7EAAYASAAEgKYxPD_BwE",
+        "email": "",
+        "whatsapp": "",
+        "cityState": "",
+        "tags": [
+            "Authorized Dealer"
+        ],
+        "description": "Official dealer in Brazil via Mercado Livre."
+    }
+]

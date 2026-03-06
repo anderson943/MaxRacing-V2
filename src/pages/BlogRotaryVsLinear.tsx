@@ -323,7 +323,7 @@ const BlogRotaryVsLinear = () => {
                     </p>
                     <div className="flex flex-col justify-center gap-4 sm:flex-row font-heading">
                         <Button asChild size="lg" className="shadow-accent">
-                            <a href="https://hauerimports.com/" target="_blank" rel="noopener noreferrer">EXPLORE DAMPERS</a>
+                            <Link to="/shop">EXPLORE DAMPERS</Link>
                         </Button>
                         <Button asChild variant="outline" size="lg">
                             <Link to="/fitment-guide">CHECK COMPATIBILITY</Link>

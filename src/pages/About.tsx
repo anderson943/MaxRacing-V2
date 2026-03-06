@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Target, Cog, Trophy, Users, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 
 const iconMap: Record<string, any> = {
@@ -63,6 +64,11 @@ const About = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>About MaxRacing | Engineering Race-Grade Steering Control</title>
+        <meta name="description" content="Since 2010, MaxRacing has focused on engineering high-performance motorcycle steering dampers that provide race-grade control at a fraction of the cost." />
+        <link rel="canonical" href="https://www.maxracing.us/about" />
+      </Helmet>
       <section className="py-24">
         <div className="container">
           <motion.div
@@ -118,15 +124,6 @@ const About = () => {
             </>
           )}
 
-          {/* Team placeholder */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-lg border border-border/30 bg-gradient-card p-12 text-center"
-          >
-            <p className="font-heading text-lg text-muted-foreground">Team section — content coming soon.</p>
-          </motion.div>
         </div>
       </section>
     </Layout>

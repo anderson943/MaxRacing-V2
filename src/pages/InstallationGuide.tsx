@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Download, Wrench, AlertTriangle, CheckCircle, Shield, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -150,6 +151,11 @@ const InstallationGuide = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Installation Guide | MaxRacing Steering Stabilizers</title>
+        <meta name="description" content="Step-by-step technical guide for installing MaxRacing steering dampers. Important safety instructions, torque specs, and alignment checks for your motorcycle." />
+        <link rel="canonical" href="https://www.maxracing.us/installation-guide" />
+      </Helmet>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-dark py-20 md:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(24_95%_53%/0.08),transparent_70%)]" />
@@ -247,7 +253,7 @@ const InstallationGuide = () => {
                 <li>Perform all work on a <strong className="text-foreground">stable motorcycle stand or lift</strong>. The front wheel must be off the ground and handlebars free to move.</li>
                 <li>Disconnect the battery before working near electrical components.</li>
                 <li>Never reuse deformed or damaged hardware.</li>
-                <li>Always apply thread-locking compound to all bolts unless otherwise specified.</li>
+                <li>Always apply thread-locking compound to all bolts unless otherwise specified. <strong className="text-foreground">Note for Rearsets:</strong> The use of threadlocker is absolutely necessary on all rearset bolts. There will be no replacement of lost parts due to the lack of this product.</li>
                 <li>After installation, perform a <strong className="text-foreground">full steering lock-to-lock check</strong> before riding.</li>
                 <li>Wear appropriate personal protective equipment (gloves, eye protection).</li>
               </ol>

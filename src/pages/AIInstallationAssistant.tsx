@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Paperclip, Trash2, Bot, User, ChevronDown, AlertCircle, X, Wrench, HelpCircle, AlertTriangle, Package } from "lucide-react";
+import { Send, Paperclip, Trash2, Bot, User, ChevronDown, AlertCircle, X, Wrench, HelpCircle, AlertTriangle, Package, FileText } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -32,9 +32,14 @@ interface Message {
 }
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
-// Note: The SDK defaults to v1beta for some models, but let's try to be explicit if it continues to fail
-// For now, let's try to fix the model name if it was the issue, but 404 on v1beta is strange.
+// Use gemini-1.5-flash for the broadest compatibility and speed
+const MODEL_NAME = "gemini-1.5-flash";
+
+if (!GOOGLE_API_KEY) {
+  console.warn("AI Assistant: VITE_GOOGLE_API_KEY is missing from environment variables.");
+}
+
+const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY || "");
 
 const SYSTEM_PROMPT = `You are the official MaxRacing Installation Assistant — a precise, professional technical support AI for MaxRacing hydraulic steering dampers and CNC accessories.
 
@@ -238,7 +243,9 @@ Always respond using this structure:
 3. Be technical, precise, and professional
 4. Never speculate about compatibility
 5. Always reference the Manual ID when answering
-6. Keep responses focused and actionable`;
+6. If the technical context contains specific "Official Manuals", inform the user they can download them using the links in the "Technical Resources" section above the chat.
+7. Keep responses focused and actionable`;
+
 
 export default function AIInstallationAssistant() {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -247,22 +254,65 @@ export default function AIInstallationAssistant() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [pendingImage, setPendingImage] = useState<{ base64: string; preview: string } | null>(null);
+  const [technicalContext, setTechnicalContext] = useState<any>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  const normalizeKey = (s: string) => {
+    return s.toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim().split(" ");
+  };
+
+  const fetchTechnicalContext = async (content: string) => {
+    try {
+      const keys = normalizeKey(content).filter(k => k.length > 1);
+      if (keys.length === 0) return null;
+
+      const { data, error } = await supabase
+        .from("catalog_supports" as any)
+        .select(`
+          *,
+          assembly_instructions:instruction_ids (
+            id,
+            brand,
+            motorcycle_model,
+            file_path,
+            file_type
+          )
+        `)
+        .overlaps("motorcycle_model_keys" as any, keys)
+        .limit(3);
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error("Context lookup error:", error);
+      return null;
+    }
+  };
+
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await supabase
+        const { data, error } = await supabase
           .from("products" as any)
           .select("name");
-        setProductModels((data as any[]).map(p => ({
-          value: p.name,
-          label: p.name.replace("MaxRacing ", "").replace(" Steering Damper Rod", "")
-        })));
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          setProductModels((data as any[]).map(p => ({
+            value: p.name,
+            label: p.name.replace("MaxRacing ", "").replace(" Steering Damper Rod", "")
+          })));
+        } else {
+          console.log("No products found in DB, using defaults");
+          setProductModels(DEFAULT_PRODUCTS);
+        }
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching products, using defaults:", error);
+        setProductModels(DEFAULT_PRODUCTS);
       }
     };
     fetchProducts();
@@ -291,8 +341,19 @@ export default function AIInstallationAssistant() {
 
   const sendMessage = async (overrideContent?: string) => {
     const content = overrideContent ?? input.trim();
-    if (!content || !selectedProduct) return;
+    if (!content) return;
+
+    if (!selectedProduct) {
+      toast({
+        title: "Product selection required",
+        description: "Please select a product model (Step 1) before starting the chat.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     if (isLoading) return;
+
 
     const userMsg: Message = {
       id: crypto.randomUUID(),
@@ -312,20 +373,44 @@ export default function AIInstallationAssistant() {
     setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "" }]);
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      const modelContext = await fetchTechnicalContext(content);
+      if (modelContext && modelContext.length > 0) {
+        setTechnicalContext(modelContext[0]);
+      }
+
+      console.log("Using model:", MODEL_NAME);
+      const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+
 
       const history = updatedMessages.slice(0, -1).map(m => ({
         role: m.role === "user" ? "user" : "model",
         parts: [{ text: m.content }],
       }));
 
+      let contextualPrompt = SYSTEM_PROMPT;
+      if (modelContext && modelContext.length > 0) {
+        contextualPrompt += `\n\n[TECHNICAL CONTEXT FOR CURRENT BIKE]\n`;
+        modelContext.forEach((ctx: any) => {
+          contextualPrompt += `- Brand: ${ctx.brand}\n`;
+          contextualPrompt += `- Models: ${ctx.motorcycle_models.join(", ")}\n`;
+          contextualPrompt += `- Variant: ${ctx.variant}\n`;
+          if (ctx.bill_of_materials) {
+            contextualPrompt += `- BOM: ${JSON.stringify(ctx.bill_of_materials)}\n`;
+          }
+          if (ctx.assembly_instructions && ctx.assembly_instructions.length > 0) {
+            contextualPrompt += `- Official Manuals available: ${ctx.assembly_instructions.map((i: any) => i.motorcycle_model).join(", ")}\n`;
+          }
+        });
+      }
+
       const chat = model.startChat({
         history,
         systemInstruction: {
           role: "system",
-          parts: [{ text: SYSTEM_PROMPT + `\nThe user has selected product: "${selectedProduct}". Tailor your responses to this specific product.` }]
+          parts: [{ text: contextualPrompt + `\nThe user has selected product: "${selectedProduct}". Tailor your responses to this specific product.` }]
         },
       });
+
 
       const promptParts: any[] = [content];
       if (pendingImage) {
@@ -348,12 +433,24 @@ export default function AIInstallationAssistant() {
         }
       }
     } catch (e: any) {
-      console.error(e);
+      console.error("AI Assistant detailed error:", e);
+      const errorMessage = e?.message || e?.toString() || "";
+      let friendlyMessage = "Could not reach the assistant. Please try again.";
+
+      if (errorMessage.includes("API key not valid") || errorMessage.includes("400")) {
+        friendlyMessage = "Google API Key is invalid or missing in production. If you are on the live site, ensure VITE_GOOGLE_API_KEY is set in your Vercel/hosting environment variables. If on localhost, check your .env file and restart your terminal.";
+      } else if (errorMessage.includes("model not found") || errorMessage.includes("404")) {
+        friendlyMessage = `Model "${MODEL_NAME}" not found or restricted. Please check your Google AI Studio quota and model availability.`;
+      } else if (errorMessage.includes("quota") || errorMessage.includes("429")) {
+        friendlyMessage = "AI rate limit exceeded. Please wait a moment before trying again.";
+      }
+
       toast({
-        title: "Connection error",
-        description: e.message || "Could not reach the assistant. Please try again.",
+        title: "Connection Error",
+        description: friendlyMessage,
         variant: "destructive"
       });
+
       setMessages((prev) => prev.filter((m) => m.id !== assistantId));
     } finally {
       setIsLoading(false);
@@ -467,7 +564,8 @@ export default function AIInstallationAssistant() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className={`rounded-xl border border-border/60 bg-card overflow-hidden transition-opacity ${!chatReady ? "opacity-40 pointer-events-none" : ""}`}
+            className={`rounded-xl border border-border/60 bg-card overflow-hidden transition-opacity`}
+
           >
             {/* Chat Header */}
             <div className="flex items-center justify-between border-b border-border/50 px-5 py-3">
@@ -495,7 +593,40 @@ export default function AIInstallationAssistant() {
               )}
             </div>
 
+            {/* Technical Resources Context */}
+            {technicalContext && (technicalContext.bill_of_materials?.length > 0 || technicalContext.assembly_instructions?.length > 0) && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-primary/5 border-b border-border/50 px-5 py-3"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Package className="h-4 w-4 text-primary" />
+                    <span className="font-heading text-xs font-semibold uppercase tracking-wider text-foreground">
+                      Technical Resources: {technicalContext.brand} {technicalContext.motorcycle_models?.[0]}
+                    </span>
+                  </div>
+                  <div className="flex gap-2">
+                    {technicalContext.assembly_instructions?.map((instr: any) => (
+                      <a
+                        key={instr.id}
+                        href={instr.file_path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 border border-border/60 font-body text-[10px] font-medium text-primary transition-colors hover:bg-primary/10"
+                      >
+                        <FileText className="h-3 w-3" />
+                        Manual ({instr.file_type.toUpperCase()})
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
             {/* Messages */}
+
             <div className="flex h-[420px] flex-col overflow-y-auto p-5 space-y-4 scroll-smooth">
               {messages.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center text-center text-muted-foreground">
@@ -583,30 +714,33 @@ export default function AIInstallationAssistant() {
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  disabled={!chatReady || isLoading}
+                  disabled={isLoading}
                   className="shrink-0 rounded-lg border border-border/50 bg-background p-2.5 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-40"
                   title="Attach image"
                 >
                   <Paperclip className="h-4 w-4" />
                 </button>
+
                 <Textarea
                   ref={textareaRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Describe your installation question…"
-                  disabled={!chatReady || isLoading}
+                  placeholder={chatReady ? "Describe your installation question…" : "Select a product above to start chatting…"}
+                  disabled={isLoading || !chatReady}
                   rows={1}
                   className="max-h-32 min-h-[42px] resize-none overflow-auto font-body text-sm"
                 />
+
                 <Button
                   onClick={() => sendMessage()}
-                  disabled={!chatReady || isLoading || (!input.trim() && !pendingImage)}
+                  disabled={isLoading || (!input.trim() && !pendingImage)}
                   size="sm"
                   className="shrink-0 h-[42px] w-[42px] p-0"
                 >
                   <Send className="h-4 w-4" />
                 </Button>
+
               </div>
               <p className="mt-2 font-body text-xs text-muted-foreground text-center">
                 Powered by official MaxRacing manuals · Never speculates · Press Enter to send

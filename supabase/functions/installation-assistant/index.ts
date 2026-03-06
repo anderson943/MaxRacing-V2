@@ -165,6 +165,9 @@ Installation must be performed by a qualified motorcycle mechanic. Incorrect ins
 5. Adjust footpeg height to rider preference (multiple positions available)
 6. Verify brake light activates correctly
 
+**Important Rearset Safety Rule:**
+The use of threadlocker (e.g., Loctite 243) is absolutely necessary on all bolts when installing MaxRacing sports rearsets. There will be no replacement of lost parts due to the lack of this product.
+
 ---
 
 ## RESPONSE FORMAT

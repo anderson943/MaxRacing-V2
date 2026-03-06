@@ -181,14 +181,12 @@ const BlogTrackDaySetup = () => {
                                 MaxRacing steering dampers are engineered for the rigors of the track. Discover why top riders trust our precision 20-click system.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                <a
-                                    href="https://hauerimports.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-8 py-4 font-heading text-sm tracking-wider text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02]"
+                                <Link
+                                    to="/shop"
+                                    className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
                                 >
                                     SHOP MAXRACING <ChevronRight className="h-4 w-4" />
-                                </a>
+                                </Link>
                                 <Link
                                     to="/installation-assistant"
                                     className="inline-flex items-center justify-center gap-2 rounded-md bg-secondary border border-border/50 px-8 py-4 font-heading text-sm tracking-wider text-foreground transition-all hover:bg-secondary/70"

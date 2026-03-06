@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Droplets, Wrench, Layers, Gauge, Factory, RefreshCw, Loader2, Cog } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 
 const iconMap: Record<string, any> = {
@@ -71,6 +72,11 @@ const Engineering = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Engineering & Technology | MaxRacing Steering Dampers</title>
+        <meta name="description" content="The science of motorcycle stability. Learn how MaxRacing hydraulic dampers use speed-sensitive valving and CNC 7075-T6 aluminum to eliminate headshake." />
+        <link rel="canonical" href="https://www.maxracing.us/engineering" />
+      </Helmet>
       <section className="py-24">
         <div className="container">
           <motion.div

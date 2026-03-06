@@ -13,6 +13,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { Search, Bike, ChevronRight, X, SlidersHorizontal, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 interface Motorcycle {
   brand: string;
@@ -158,6 +159,11 @@ const FitmentGuide = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Motorcycle Steering Damper Fitment Guide | MaxRacing</title>
+        <meta name="description" content="Find the exact steering stabilizer fitment for your motorcycle. Search our comprehensive catalog of Kawasaki, Honda, Yamaha, Suzuki, and KTM applications." />
+        <link rel="canonical" href="https://www.maxracing.us/fitment-guide" />
+      </Helmet>
       <section id="fitment-guide" className="py-24">
         <div className="container">
           {/* Header */}

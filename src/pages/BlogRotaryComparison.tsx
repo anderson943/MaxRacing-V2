@@ -1,3 +1,4 @@
+import React from "react";
 import Layout from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -55,6 +56,16 @@ const BlogRotaryComparison = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="overflow-hidden rounded-2xl border border-border/30 bg-gradient-card shadow-2xl"
                     >
+                        {/* New Hero Image */}
+                        <div className="relative h-[300px] w-full md:h-[450px]">
+                            <img
+                                src="/images/blog/rotary-comparison-hero.png"
+                                alt="MaxRacing vs GPR vs Scotts - Side by Side Comparison"
+                                className="h-full w-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                        </div>
+
                         <div className="p-8 md:p-12">
                             <div className="mb-6 flex flex-wrap gap-4">
                                 <span className="rounded-full bg-primary/10 px-4 py-1 font-heading text-xs tracking-widest text-primary">TECHNICAL COMPARISON</span>
@@ -97,7 +108,8 @@ const BlogRotaryComparison = () => {
                                     <td className="px-6 py-5 font-bold text-foreground">Price (Complete Kit)</td>
                                     <td className="px-6 py-5">
                                         ~$379.99<br />
-                                        <SourceLink href="https://hauerimports.com/products/maxracing-max20-steering-damper-husaberg-fe-450" label="Hauer Product Page" />
+                                        <SourceLink href="/shop" label="Product Page" />
+
                                     </td>
                                     <td className="px-6 py-5">
                                         ~$522.50–$755.25<br />
@@ -112,7 +124,8 @@ const BlogRotaryComparison = () => {
                                     <td className="px-6 py-5 font-bold text-foreground">Material Specs</td>
                                     <td className="px-6 py-5">
                                         Alloy 7075-T6<br />
-                                        <SourceLink href="https://hauerimports.com/pages/maxracing-faqs" label="Hauer MaxRacing FAQs" />
+                                        <SourceLink href="/faq" label="MaxRacing FAQs" />
+
                                     </td>
                                     <td className="px-6 py-5">
                                         6061-T6 Aluminum & Steel<br />
@@ -127,7 +140,8 @@ const BlogRotaryComparison = () => {
                                     <td className="px-6 py-5 font-bold text-foreground">Warranty</td>
                                     <td className="px-6 py-5">
                                         3 Years (Manufacturing)<br />
-                                        <SourceLink href="https://hauerimports.com/pages/maxracing-faqs" label="Hauer MaxRacing FAQs" />
+                                        <SourceLink href="/faq" label="MaxRacing FAQs" />
+
                                     </td>
                                     <td className="px-6 py-5">
                                         90 Days (Repair/Replace)<br />
@@ -142,7 +156,8 @@ const BlogRotaryComparison = () => {
                                     <td className="px-6 py-5 font-bold text-foreground">Colors</td>
                                     <td className="px-6 py-5">
                                         49 combinations<br />
-                                        <SourceLink href="https://hauerimports.com/products/maxracing-max20-steering-damper-husaberg-fe-450" label="Hauer Color Variants" />
+                                        <SourceLink href="/shop" label="Color Variants" />
+
                                     </td>
                                     <td className="px-6 py-5">
                                         Black, Red, Blue, Gold, Orange (request)<br />
@@ -157,7 +172,8 @@ const BlogRotaryComparison = () => {
                                     <td className="px-6 py-5 font-bold text-foreground">Architecture / Form Factor</td>
                                     <td className="px-6 py-5">
                                         Handlebar-mounted rotary stabilizer with bike-specific brackets; under-/over-bar mounting affects clearance/fitment.<br />
-                                        <SourceLink href="https://hauerimports.com/pages/maxracing-faqs" label="Hauer FAQs" />
+                                        <SourceLink href="/faq" label="MaxRacing FAQs" />
+
                                     </td>
                                     <td className="px-6 py-5">
                                         Rotary steering stabilizer (V-series kits), typically stem/handlebar-area mounted with model-specific hardware.<br />
@@ -172,7 +188,8 @@ const BlogRotaryComparison = () => {
                                     <td className="px-6 py-5 font-bold text-foreground">Damping Principle</td>
                                     <td className="px-6 py-5">
                                         Hydraulic damping adds steering resistance to reduce wobble/shimmy and improve stability.<br />
-                                        <SourceLink href="https://hauerimports.com/pages/maxracing-faqs" label="Hauer FAQs" />
+                                        <SourceLink href="/faq" label="MaxRacing FAQs" />
+
                                     </td>
                                     <td className="px-6 py-5">
                                         Patented rotary hydraulic damping with fluid control, designed specifically to resist rotary steering motion.<br />
@@ -188,6 +205,13 @@ const BlogRotaryComparison = () => {
                     </div>
 
                     <SectionHeading>1) Price: What you actually pay for a complete kit</SectionHeading>
+                    <div className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-carbon">
+                        <img
+                            src="/images/blog/rotary-comparison-price.png"
+                            alt="Price Comparison Infographic"
+                            className="w-full object-cover"
+                        />
+                    </div>
                     <div className="space-y-6 text-muted-foreground leading-relaxed font-body">
                         <p>The “real” price is always the complete kit: stabilizer + mount system. Rotary stabilizers are especially mount-dependent, and the mount style (top mount vs sub mount vs triple clamp kit) changes cost.</p>
                         <ul className="grid gap-6 md:grid-cols-3 font-heading">
@@ -207,6 +231,13 @@ const BlogRotaryComparison = () => {
                     </div>
 
                     <SectionHeading>2) Materials: What brands publish (and don't)</SectionHeading>
+                    <div className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-carbon">
+                        <img
+                            src="/images/blog/rotary-comparison-material.png"
+                            alt="Material Comparison Infographic"
+                            className="w-full object-cover"
+                        />
+                    </div>
                     <div className="grid gap-6 md:grid-cols-3">
                         <div className="flex gap-4 p-6 rounded-xl border border-border/20 bg-primary/5">
                             <CheckCircle2 className="h-6 w-6 text-primary shrink-0" />
@@ -232,6 +263,13 @@ const BlogRotaryComparison = () => {
                     </div>
 
                     <SectionHeading>3) Warranty: What's covered (and excluded)</SectionHeading>
+                    <div className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-carbon">
+                        <img
+                            src="/images/blog/rotary-comparison-warranty.png"
+                            alt="Warranty Comparison Infographic"
+                            className="w-full object-cover"
+                        />
+                    </div>
                     <div className="space-y-8 font-body">
                         <div>
                             <h4 className="font-heading text-xl text-primary flex items-center gap-2 mb-4 italic">MaxRacing: Clear 3-Year Warranty</h4>
@@ -248,6 +286,13 @@ const BlogRotaryComparison = () => {
                     </div>
 
                     <SectionHeading>4) Colors & Customization</SectionHeading>
+                    <div className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-carbon">
+                        <img
+                            src="/images/blog/rotary-comparison-colors.png"
+                            alt="Colors Comparison Infographic"
+                            className="w-full object-cover"
+                        />
+                    </div>
                     <div className="grid gap-8 md:grid-cols-3 font-body">
                         <div className="rounded-xl border border-border/20 bg-card p-6 text-center">
                             <Paintbrush className="h-8 w-8 text-primary mx-auto mb-4" />
@@ -267,6 +312,13 @@ const BlogRotaryComparison = () => {
                     </div>
 
                     <SectionHeading>5) Maintenance: "Set and Forget" vs "Service like Suspension"</SectionHeading>
+                    <div className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-carbon">
+                        <img
+                            src="/images/blog/rotary-comparison-maintenance.png"
+                            alt="Maintenance Comparison Infographic"
+                            className="w-full object-cover"
+                        />
+                    </div>
                     <div className="space-y-6 font-body text-muted-foreground">
                         <p><strong>MaxRacing:</strong> Routine maintenance is not required; if leaking oil or loss of pressure, it will be promptly substituted.</p>
                         <p><strong>GPR:</strong> Explicitly recommends annual oil changes and warns bad oil is the fastest way to ruin the stabilizer.</p>
@@ -274,6 +326,13 @@ const BlogRotaryComparison = () => {
                     </div>
 
                     <SectionHeading>6) Common Issues & Failures: What goes wrong?</SectionHeading>
+                    <div className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-carbon">
+                        <img
+                            src="/images/blog/rotary-comparison-issues.png"
+                            alt="Common Issues Comparison Infographic"
+                            className="w-full object-cover"
+                        />
+                    </div>
                     <div className="space-y-6 font-body text-muted-foreground">
                         <div className="p-6 rounded-xl border border-border/20 bg-secondary/5">
                             <h4 className="font-heading text-foreground mb-2 flex items-center gap-2"><LifeBuoy className="h-4 w-4" /> MaxRacing</h4>
@@ -319,7 +378,7 @@ const BlogRotaryComparison = () => {
                             <p className="mb-6 font-heading text-xl italic text-foreground text-center">Stabilize Your ride with MaxRacing</p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
                                 <Button asChild size="lg" className="rounded-full min-w-[240px] shadow-accent">
-                                    <a href="https://hauerimports.com/" target="_blank" rel="noopener noreferrer">SHOP STEERING DAMPERS</a>
+                                    <Link to="/shop">SHOP STEERING DAMPERS</Link>
                                 </Button>
                                 <Button asChild variant="outline" size="lg" className="rounded-full min-w-[240px]">
                                     <Link to="/fitment-guide">FIND YOUR BIKE</Link>

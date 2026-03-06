@@ -1,7 +1,8 @@
 import Layout from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ChevronRight, ExternalLink, ShieldCheck, AlertCircle, Info } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, ExternalLink, ShieldCheck, AlertCircle, Info } from "lucide-react";
+
 import { Helmet } from "react-helmet-async";
 
 const articleSchema = {
@@ -91,7 +92,8 @@ const BlogWarrantyComparison = () => {
                         <p className="mb-4 font-body text-muted-foreground leading-relaxed">
                             MaxRacing's advantage is not just product design—it's the support structure: Hauer Imports publishes the MaxRacing warranty FAQs and acts as the single point of contact for claims.
                         </p>
-                        <SourceLink href="https://hauerimports.com/pages/maxracing-faqs" label="Hauer MaxRacing FAQs" />
+                        <SourceLink href="/faq" label="MaxRacing FAQs" />
+
 
                         <div className="grid gap-6 md:grid-cols-2 mb-12">
                             <div className="rounded-lg border border-border/40 bg-card p-5">
@@ -105,9 +107,10 @@ const BlogWarrantyComparison = () => {
                                 <p className="font-body text-sm text-muted-foreground">
                                     Simply provide your name, email, and order number. Approval typically takes just 1-5 days, with replacements shipped out immediately after approval.
                                 </p>
-                                <a href="https://hauerimports.com/pages/contact" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 font-body text-xs text-primary hover:underline">
-                                    Go to Warranty Portal <ExternalLink className="h-2 w-2" />
-                                </a>
+                                <Link to="/contact" className="mt-2 inline-flex items-center gap-1 font-body text-xs text-primary hover:underline">
+                                    Go to Warranty Portal <ArrowRight className="h-4 w-4" />
+                                </Link>
+
                             </div>
                         </div>
                         {/* Öhlins */}
@@ -117,7 +120,7 @@ const BlogWarrantyComparison = () => {
                         </p>
                         <SourceLink href="https://www.ohlins.com/en-us/service-and-support/warranty/warranty-us" label="Öhlins Warranty US" />
                         <p className="mb-6 font-body text-sm text-muted-foreground">
-                            Öhlins also states the warranty does not apply to purchases through unauthorized retailers/dealers, including unauthorized online sellers.
+                            Öhlins also states the warranty does not apply to purchases through unauthorized retailers/shop, including unauthorized online sellers.
                         </p>
 
                         {/* Hyperpro */}
@@ -268,14 +271,12 @@ const BlogWarrantyComparison = () => {
                                 >
                                     MAXRACING WARRANTY
                                 </Link>
-                                <a
-                                    href="https://hauerimports.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-8 py-4 font-heading text-sm tracking-wider text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02]"
+                                <Link
+                                    to="/shop"
+                                    className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
                                 >
                                     EXPLORE OUR RANGE <ChevronRight className="h-4 w-4" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
