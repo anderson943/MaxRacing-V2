@@ -346,7 +346,11 @@ const DealerCard = ({ dealer, compact = false }: { dealer: any, compact?: boolea
 
             {/* Action Button */}
             <div className="mt-auto">
-                {dealer.website ? (
+                {dealer.whatsapp ? (
+                    <a href={dealer.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-primary text-primary-foreground py-2 px-4 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
+                        Contact by WhatsApp <MessageCircle className="h-4 w-4" />
+                    </a>
+                ) : dealer.website ? (
                     <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-primary text-primary-foreground py-2 px-4 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
                         Visit Website <ExternalLink className="h-3 w-3" />
                     </a>
@@ -355,8 +359,6 @@ const DealerCard = ({ dealer, compact = false }: { dealer: any, compact?: boolea
                         Website Pending
                     </div>
                 )}
-
-                {/* WhatsApp button removed as requested for uniformity - only Website remains */}
             </div>
         </div>
     );
