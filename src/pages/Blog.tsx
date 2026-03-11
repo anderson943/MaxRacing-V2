@@ -36,7 +36,7 @@ const placeholderPosts = [
     date: "February 2026",
     excerpt: "A deep dive into steering stabilizer warranties. Comparing MaxRacing, Öhlins, Hyperpro, GPR, and Scotts.",
     slug: "/blog/warranty-comparison",
-    image: "/images/blog/warranty-comparison-hero-v3.jpg"
+    image: "/images/blog/warranty-comparison-hero-v4.jpg"
   },
   {
     title: "Track Day Damper Setup Guide",
