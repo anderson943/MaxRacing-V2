@@ -171,32 +171,32 @@ const BlogRotaryComparison = () => {
                                 <tr>
                                     <td className="px-6 py-5 font-bold text-foreground">Architecture / Form Factor</td>
                                     <td className="px-6 py-5">
-                                        Handlebar-mounted rotary stabilizer with bike-specific brackets; under-/over-bar mounting affects clearance/fitment.<br />
+                                        Rotary steering stabilizer mounted in the stem/handlebar area using bike-specific brackets; the kit may be under- or over-bar depending on clearance.<br />
                                         <SourceLink href="/faq" label="MaxRacing FAQs" />
 
                                     </td>
                                     <td className="px-6 py-5">
-                                        Rotary steering stabilizer (V-series kits), typically stem/handlebar-area mounted with model-specific hardware.<br />
+                                        Rotary steering stabilizer mounted in the stem/handlebar area, supplied as bike-specific kits with model-specific mounting hardware.<br />
                                         <SourceLink href="https://www.gprstabilizer.com/products/" label="GPR Products" />
                                     </td>
                                     <td className="px-6 py-5">
-                                        Compact rotary stabilizer system; stem/handlebar-area mounted; extensive service documentation published.<br />
+                                        Rotary steering stabilizer mounted in the stem/handlebar area, typically used with bike-specific mounting kits.<br />
                                         <SourceLink href="https://www.scottsonline.com/scotts.php" label="Scotts Support" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td className="px-6 py-5 font-bold text-foreground">Damping Principle</td>
                                     <td className="px-6 py-5">
-                                        Hydraulic damping adds steering resistance to reduce wobble/shimmy and improve stability.<br />
+                                        Rotary hydraulic damping that resists steering rotation by metering oil through internal valving as the bars turn.<br />
                                         <SourceLink href="/faq" label="MaxRacing FAQs" />
 
                                     </td>
                                     <td className="px-6 py-5">
-                                        Patented rotary hydraulic damping with fluid control, designed specifically to resist rotary steering motion.<br />
+                                        Rotary hydraulic damping that resists steering rotation using internal valving, with separate control for low-speed vs high-speed steering events (model-dependent).<br />
                                         <SourceLink href="https://www.gprstabilizer.com/products/" label="GPR Products" />
                                     </td>
                                     <td className="px-6 py-5">
-                                        Hydraulic rotary stabilizer using valving circuits, including a dedicated high-speed damping system.<br />
+                                        Rotary hydraulic damping that resists steering rotation using internal valving, with separate control for low-speed vs high-speed steering events (model-dependent).<br />
                                         <SourceLink href="https://www.scottsonline.com/scotts.php" label="Scotts Support" />
                                     </td>
                                 </tr>

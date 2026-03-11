@@ -9,7 +9,7 @@ const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Steering Stabilizer Warranty Comparison: MaxRacing vs Öhlins vs Hyperpro vs GPR vs Scotts (Claims & Shipping)",
-    "image": "/images/blog/warranty-comparison-hero-v3.jpg",
+    "image": "/images/blog/warranty-comparison-hero-v4.jpg",
     "author": { "@type": "Organization", "name": "MaxRacing" },
     "publisher": { "@type": "Organization", "name": "MaxRacing" },
     "datePublished": "2026-02-26",
@@ -52,7 +52,7 @@ const BlogWarrantyComparison = () => {
             {/* Hero */}
             <section className="relative overflow-hidden">
                 <img
-                    src="/images/blog/warranty-comparison-hero-v3.jpg"
+                    src="/images/blog/warranty-comparison-hero-v4.jpg"
                     alt="Steering Stabilizer Warranty Comparison: MaxRacing vs Öhlins vs Hyperpro vs GPR vs Scotts"
                     className="h-[340px] w-full object-cover md:h-[480px]"
                 />

@@ -8,13 +8,13 @@ interface ComparisonRow {
 
 const rows: ComparisonRow[] = [
   {
-    category: "Hydraulic Principle",
-    description: "Both operate on the precision linear hydraulic damping principle: a piston moving through high-viscosity oil with indexed flow resistance.",
+    category: "Damping Principle",
+    description: "MaxRacing: Rotary hydraulic damping that resists steering rotation by metering oil through internal valving as the bars turn. Öhlins: Piston-driven hydraulic damping that adds steering resistance by forcing oil through internal passages with adjustable valving (model-dependent pressurization).",
     reference: { url: "https://ohlins.pl/sites/default/files/om_07261-01.pdf", label: "Öhlins Road & Track Manual" },
   },
   {
-    category: "Internal Architecture",
-    description: "Both fall within the same category of sealed hydraulic piston assemblies with adjustable flow control.",
+    category: "Architecture / Form Factor",
+    description: "MaxRacing: Rotary steering stabilizer mounted in the stem/handlebar area using bike-specific brackets; the kit may be under- or over-bar depending on clearance. Öhlins: Linear hydraulic steering damper (shaft + piston in a cylinder), typically mounted across the front end using model- or kit-specific brackets.",
     reference: { url: "https://www.ohlins.com/products/motorcycle/steering-dampers", label: "Öhlins Steering Dampers" },
   },
   {
@@ -33,8 +33,8 @@ const rows: ComparisonRow[] = [
     reference: { url: "https://www.ohlins.com/service-centers", label: "Öhlins Service Centers" },
   },
   {
-    category: "Years & Market Presence",
-    description: "Öhlins founded in 1976. MaxRacing established in 2010.",
+    category: "Founded / Market Presence",
+    description: "Öhlins: 1976. MaxRacing: 2010.",
     reference: { url: "https://www.ohlins.com/company/history", label: "Öhlins History" },
   },
   {
