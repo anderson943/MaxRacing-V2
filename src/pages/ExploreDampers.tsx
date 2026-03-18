@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Shield, Gauge, Bike, DollarSign, Palette, ArrowRight, Loader2 } from "lucide-react";
 import heroVideo from "@/assets/explore-dampers-hero.mp4";
-import ColorGallery from "@/components/explore/ColorGallery";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -28,15 +27,17 @@ const DEFAULT_COLOR_OPTIONS = [
   { name: "Black", gradient: "radial-gradient(ellipse at 30% 30%, hsl(0 0% 30%), hsl(0 0% 8%) 70%)" },
   { name: "Red", gradient: "radial-gradient(ellipse at 30% 30%, hsl(0 80% 65%), hsl(0 85% 35%) 70%)" },
   { name: "Blue", gradient: "radial-gradient(ellipse at 30% 30%, hsl(220 90% 70%), hsl(220 90% 35%) 70%)" },
-  { name: "Gold", gradient: "radial-gradient(ellipse at 30% 30%, hsl(45 95% 75%), hsl(40 85% 40%) 70%)" },
+  { name: "Golden", gradient: "radial-gradient(ellipse at 30% 30%, hsl(45 95% 75%), hsl(40 85% 40%) 70%)" },
   { name: "Green", gradient: "radial-gradient(ellipse at 30% 30%, hsl(145 60% 55%), hsl(145 70% 25%) 70%)" },
-  { name: "Silver", gradient: "radial-gradient(ellipse at 30% 30%, hsl(0 0% 90%), hsl(0 0% 55%) 70%)" },
+  { name: "Grey", gradient: "radial-gradient(ellipse at 30% 30%, hsl(0 0% 30%), hsl(0 0% 55%) 70%)" },
   { name: "Orange", gradient: "radial-gradient(ellipse at 30% 30%, hsl(30 95% 65%), hsl(20 90% 38%) 70%)" },
 ];
 
 const ExploreDampers = () => {
   const [comparisonRows, setComparisonRows] = useState<any[]>(DEFAULT_COMPARISON_ROWS);
   const [colorOptions, setColorOptions] = useState<any[]>(DEFAULT_COLOR_OPTIONS);
+  const [selectedBody, setSelectedBody] = useState("Black");
+  const [selectedAdjuster, setSelectedAdjuster] = useState("Black");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -226,7 +227,7 @@ const ExploreDampers = () => {
         </div>
       </section>
 
-      {/* 49 Color Combos */}
+      {/* 49 Color Configurator */}
       <section className="py-24">
         <div className="container">
           <motion.div
@@ -235,47 +236,97 @@ const ExploreDampers = () => {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <p className="mb-3 font-heading text-sm tracking-[0.3em] text-primary">MAKE IT YOURS</p>
+            <p className="mb-3 font-heading text-sm tracking-[0.3em] text-primary">BUILD YOUR OWN</p>
             <h2 className="mb-4 font-heading text-4xl text-foreground md:text-5xl">
-              49 Color Combinations
+              Interactive 3D Configurator
             </h2>
             <p className="mx-auto max-w-xl font-body text-muted-foreground">
-              7 body colors × 7 adjuster colors. Match your bike, stand out from the crowd, or go stealth — the choice is yours.
+              7 body colors × 7 adjuster colors = 49 combinations. Select your preferred style below to instantly preview your exact damper.
             </p>
           </motion.div>
 
-          {/* Color grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-3xl"
-          >
-            <div className="mb-8 grid grid-cols-7 gap-3">
-              {colorOptions.map((color) => (
-                <div key={color.name} className="flex flex-col items-center gap-2">
-                  <div
-                    className="h-12 w-12 rounded-full border border-border/40 shadow-lg md:h-16 md:w-16"
-                    style={{ background: color.gradient }}
-                  />
-                  <span className="font-heading text-[10px] tracking-wider text-muted-foreground md:text-xs">
-                    {color.name}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-2 lg:items-center">
+            
+            {/* 3D Showcase Window */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center rounded-2xl border border-border/40 bg-gradient-card overflow-hidden h-[400px] md:h-[600px] shadow-2xl relative"
+            >
+              <div className="absolute top-4 left-4 z-10 font-heading text-xs tracking-widest text-muted-foreground uppercase">
+                {selectedBody} Body / {selectedAdjuster} Adjuster
+              </div>
+              <img 
+                key={`${selectedBody}-${selectedAdjuster}`}
+                src={`/dampers/${selectedBody.toLowerCase()}-${selectedAdjuster.toLowerCase()}.jpg`} 
+                alt={`${selectedBody} Damper with ${selectedAdjuster} Adjuster`}
+                className="w-full h-full object-cover animate-in fade-in zoom-in-95 duration-500"
+              />
+            </motion.div>
 
-            <div className="flex flex-col items-center gap-4 rounded-lg border border-primary/20 bg-gradient-card p-8 text-center">
-              <p className="font-heading text-5xl text-primary md:text-7xl">49</p>
-              <p className="font-heading text-sm tracking-widest text-muted-foreground">
-                POSSIBLE COMBINATIONS
-              </p>
-              <p className="font-body text-sm text-muted-foreground">
-                Available on both Max10 and Max20 models
-              </p>
-              <ColorGallery />
-            </div>
-          </motion.div>
+            {/* Selection UI */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col gap-10"
+            >
+              {/* BODY SELECTION */}
+              <div>
+                <h3 className="mb-4 font-heading text-2xl text-foreground">1. Select Body Color</h3>
+                <div className="grid grid-cols-4 gap-4 sm:grid-cols-7">
+                  {colorOptions.map((color) => (
+                    <button
+                      key={`body-${color.name}`}
+                      onClick={() => setSelectedBody(color.name)}
+                      className={`group flex flex-col items-center gap-2 transition-transform ${selectedBody === color.name ? 'scale-110' : 'hover:scale-105'}`}
+                    >
+                      <div
+                        className={`h-12 w-12 md:h-14 md:w-14 rounded-full border-2 shadow-lg transition-all ${
+                          selectedBody === color.name ? 'border-primary ring-4 ring-primary/20 scale-110' : 'border-border/40 group-hover:border-primary/50'
+                        }`}
+                        style={{ background: color.gradient }}
+                      />
+                      <span className={`font-heading text-[10px] md:text-xs tracking-wider uppercase transition-colors ${selectedBody === color.name ? 'text-primary' : 'text-muted-foreground'}`}>
+                        {color.name}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* ADJUSTER SELECTION */}
+              <div>
+                <h3 className="mb-4 font-heading text-2xl text-foreground">2. Select Adjuster Color</h3>
+                <div className="grid grid-cols-4 gap-4 sm:grid-cols-7">
+                  {colorOptions.map((color) => (
+                    <button
+                      key={`adjuster-${color.name}`}
+                      onClick={() => setSelectedAdjuster(color.name)}
+                      className={`group flex flex-col items-center gap-2 transition-transform ${selectedAdjuster === color.name ? 'scale-110' : 'hover:scale-105'}`}
+                    >
+                      <div
+                        className={`h-10 w-10 md:h-12 md:w-12 rounded-full border-2 shadow-inner transition-all ${
+                          selectedAdjuster === color.name ? 'border-primary ring-4 ring-primary/20 scale-110' : 'border-border/40 group-hover:border-primary/50'
+                        }`}
+                        style={{ background: color.gradient }}
+                      />
+                      <span className={`font-heading text-[10px] md:text-xs tracking-wider uppercase transition-colors ${selectedAdjuster === color.name ? 'text-primary' : 'text-muted-foreground'}`}>
+                        {color.name}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 rounded-lg border border-primary/20 bg-primary/5 p-6">
+                 <p className="font-heading text-3xl text-primary md:text-5xl">49 Combinations</p>
+                 <p className="mt-2 font-body text-sm text-muted-foreground">Every color combination shown is instantly available on both the Max10 and Max20 models to seamlessly match your motorcycle.</p>
+              </div>
+
+            </motion.div>
+          </div>
         </div>
       </section>
 

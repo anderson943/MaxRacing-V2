@@ -66,7 +66,7 @@ const HeroSection = () => {
               size="lg"
               className="min-w-[200px] font-heading text-base tracking-wider uppercase border-metallic-dark text-metallic hover:bg-secondary hover:text-foreground"
             >
-              <Link to="/shop">Explore Dampers</Link>
+              <Link to="/explore-dampers">Explore Dampers</Link>
             </Button>
           </motion.div>
         </div>

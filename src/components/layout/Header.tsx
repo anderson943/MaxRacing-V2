@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Shop", path: "/shop" },
+  { label: "Explore Dampers", path: "/explore-dampers" },
   { label: "Fitment Guide", path: "/fitment-guide" },
-  { label: "Engineering", path: "/engineering" },
   { label: "About", path: "/about" },
   {
     label: "Support",
@@ -16,9 +16,9 @@ const navLinks = [
       { label: "AI Installation Assistant", path: "/support/ai-installation-assistant" },
       { label: "FAQ", path: "/faq" },
       { label: "Warranty", path: "/warranty" },
+      { label: "Contact", path: "/contact" },
     ],
   },
-  { label: "Contact", path: "/contact" },
 ];
 
 const Header = () => {
@@ -117,7 +117,10 @@ const Header = () => {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex gap-2">
+          <Button asChild size="sm" variant="outline" className="font-heading tracking-wider uppercase">
+            <Link to="/dealer-portal">Dealer Portal</Link>
+          </Button>
           <Button asChild size="sm" className="font-heading tracking-wider uppercase">
             <Link to="/become-a-dealer">Become a Dealer</Link>
           </Button>
@@ -205,11 +208,18 @@ const Header = () => {
                   </Link>
                 );
               })}
-              <Button asChild className="mt-2 font-heading tracking-wider uppercase">
-                <Link to="/become-a-dealer" onClick={() => setMobileOpen(false)}>
-                  Become a Dealer
-                </Link>
-              </Button>
+              <div className="mt-2 flex flex-col gap-2">
+                <Button asChild variant="outline" className="font-heading tracking-wider uppercase">
+                  <Link to="/dealer-portal" onClick={() => setMobileOpen(false)}>
+                    Dealer Portal
+                  </Link>
+                </Button>
+                <Button asChild className="font-heading tracking-wider uppercase">
+                  <Link to="/become-a-dealer" onClick={() => setMobileOpen(false)}>
+                    Become a Dealer
+                  </Link>
+                </Button>
+              </div>
             </nav>
           </motion.div>
         )}

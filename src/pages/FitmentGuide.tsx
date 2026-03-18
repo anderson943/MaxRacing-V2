@@ -11,7 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
-import { Search, Bike, ChevronRight, X, SlidersHorizontal, Loader2 } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Search, Bike, ChevronRight, X, SlidersHorizontal, Loader2, Camera } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
@@ -20,43 +21,18 @@ interface Motorcycle {
   model: string;
   slug: string;
   segment: string;
+  hasImage?: boolean;
 }
 
 const DEFAULT_BRANDS = ["Kawasaki", "Honda", "Yamaha", "Suzuki", "KTM"];
 
-const DEFAULT_MOTORCYCLES: Motorcycle[] = [
-  { brand: "Kawasaki", model: "Z400", slug: "kawasaki-z400", segment: "Naked" },
-  { brand: "Kawasaki", model: "Ninja 400", slug: "kawasaki-ninja-400", segment: "Sport" },
-  { brand: "Kawasaki", model: "Z650", slug: "kawasaki-z650", segment: "Naked" },
-  { brand: "Kawasaki", model: "Ninja 650", slug: "kawasaki-ninja-650", segment: "Sport" },
-  { brand: "Kawasaki", model: "Z900", slug: "kawasaki-z900", segment: "Naked" },
-  { brand: "Kawasaki", model: "Ninja 1000SX", slug: "kawasaki-ninja-1000sx", segment: "Sport Touring" },
-  { brand: "Honda", model: "CB300R", slug: "honda-cb300r", segment: "Naked" },
-  { brand: "Honda", model: "CBR500R", slug: "honda-cbr500r", segment: "Sport" },
-  { brand: "Honda", model: "CB500F", slug: "honda-cb500f", segment: "Naked" },
-  { brand: "Honda", model: "CB650R", slug: "honda-cb650r", segment: "Naked" },
-  { brand: "Honda", model: "CBR650R", slug: "honda-cbr650r", segment: "Sport" },
-  { brand: "Honda", model: "CB1000R", slug: "honda-cb1000r", segment: "Naked" },
-  { brand: "Yamaha", model: "MT-03", slug: "yamaha-mt-03", segment: "Naked" },
-  { brand: "Yamaha", model: "R3", slug: "yamaha-r3", segment: "Sport" },
-  { brand: "Yamaha", model: "MT-07", slug: "yamaha-mt-07", segment: "Naked" },
-  { brand: "Yamaha", model: "R7", slug: "yamaha-r7", segment: "Sport" },
-  { brand: "Yamaha", model: "MT-09", slug: "yamaha-mt-09", segment: "Naked" },
-  { brand: "Yamaha", model: "MT-10", slug: "yamaha-mt-10", segment: "Naked" },
-  { brand: "Suzuki", model: "GSX250R", slug: "suzuki-gsx250r", segment: "Sport" },
-  { brand: "Suzuki", model: "SV650", slug: "suzuki-sv650", segment: "Naked" },
-  { brand: "Suzuki", model: "GSX-S750", slug: "suzuki-gsx-s750", segment: "Naked" },
-  { brand: "Suzuki", model: "GSX-S1000", slug: "suzuki-gsx-s1000", segment: "Naked" },
-  { brand: "KTM", model: "390 Duke", slug: "ktm-390-duke", segment: "Naked" },
-  { brand: "KTM", model: "RC 390", slug: "ktm-rc-390", segment: "Sport" },
-  { brand: "KTM", model: "790 Duke", slug: "ktm-790-duke", segment: "Naked" },
-  { brand: "KTM", model: "890 Duke", slug: "ktm-890-duke", segment: "Naked" },
-  { brand: "KTM", model: "1290 Super Duke R", slug: "ktm-1290-super-duke-r", segment: "Naked" },
-];
+import { bikes } from "@/data/bikes"; // Importing the parsed JSON data directly
+const DEFAULT_MOTORCYCLES: Motorcycle[] = bikes as Motorcycle[];
 
 const FitmentGuide = () => {
   const location = useLocation();
   const [query, setQuery] = useState("");
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [selectedSegment, setSelectedSegment] = useState<string>("");
   const [motorcycles, setMotorcycles] = useState<Motorcycle[]>(DEFAULT_MOTORCYCLES);
@@ -65,53 +41,9 @@ const FitmentGuide = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-
-        // Fetch brands
-        const { data: brandsData } = await supabase
-          .from("brands")
-          .select("name")
-          .order("name");
-
-        if (brandsData && brandsData.length > 0) {
-          setAllBrands(brandsData.map(b => b.name));
-        }
-
-        // Fetch motorcycles with brand names
-        const { data: bikesData, error: bikesError } = await supabase
-          .from("motorcycles")
-          .select(`
-            model,
-            slug,
-            segment,
-            brands (name)
-          `);
-
-        if (bikesError) throw bikesError;
-
-        if (bikesData && bikesData.length > 0) {
-          const formattedBikes: Motorcycle[] = bikesData.map((b: any) => ({
-            brand: b.brands.name,
-            model: b.model,
-            slug: b.slug,
-            segment: b.segment
-          }));
-          setMotorcycles(formattedBikes);
-
-          // Derive segments from unique values
-          const segments = Array.from(new Set(formattedBikes.map(b => b.segment))).sort();
-          setAllSegments(segments);
-        }
-      } catch (error) {
-        console.error("Error fetching fitment data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    // Re-derive brands directly from the static dataset instead of hitting Supabase
+    setAllBrands(Array.from(new Set(DEFAULT_MOTORCYCLES.map(b => b.brand))).sort());
+    setLoading(false);
   }, []);
 
   const activeBrand = selectedBrand === "__all__" ? "" : selectedBrand;
@@ -308,13 +240,25 @@ const FitmentGuide = () => {
                             key={m.slug}
                             className="group flex items-center justify-between bg-card px-6 py-3 transition-colors hover:bg-secondary/50"
                           >
-                            <div>
-                              <p className="font-heading text-sm text-foreground">
-                                {m.model}
-                              </p>
-                              <p className="text-xs text-muted-foreground/70">
-                                {m.segment}
-                              </p>
+                            <div className="flex w-full items-center justify-between">
+                              <div>
+                                <p className="font-heading text-sm text-foreground">
+                                  {m.model}
+                                </p>
+                                <p className="text-xs text-muted-foreground/70">
+                                  {m.segment}
+                                </p>
+                              </div>
+                              
+                              {m.hasImage && (
+                                <button
+                                  onClick={() => setSelectedImage(`/installed_photos/${m.slug}.jpg`)}
+                                  className="ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                                  title="View Installed Photo"
+                                >
+                                  <Camera className="h-4 w-4" />
+                                </button>
+                              )}
                             </div>
 
                           </div>
@@ -333,6 +277,23 @@ const FitmentGuide = () => {
           </p>
         </div>
       </section>
+
+      {/* Fullscreen Image Modal */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-4xl border-border/40 bg-card p-0 overflow-hidden outline-none">
+          {/* Hidden title for screen reader accessibility */}
+          <DialogTitle className="sr-only">Installed Motorcycle Photo</DialogTitle>
+          <div className="relative flex items-center justify-center bg-black/90 p-2 min-h-[50vh]">
+            {selectedImage && (
+              <img 
+                src={selectedImage} 
+                alt="Installed Photo" 
+                className="w-full h-auto max-h-[85vh] object-contain rounded-md"
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };

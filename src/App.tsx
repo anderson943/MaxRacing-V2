@@ -9,7 +9,6 @@ import Index from "./pages/Index";
 import FitmentGuide from "./pages/FitmentGuide";
 import BecomeADealer from "./pages/BecomeADealer";
 import Shop from "./pages/Shop";
-import Engineering from "./pages/Engineering";
 import ExploreDampers from "./pages/ExploreDampers";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
@@ -27,6 +26,7 @@ import FAQ from "./pages/FAQ";
 import Warranty from "./pages/Warranty";
 import NotFound from "./pages/NotFound";
 import AIInstallationAssistant from "./pages/AIInstallationAssistant";
+import DealerPortal from "./pages/DealerPortal";
 
 const queryClient = new QueryClient();
 const App = () => (
@@ -41,7 +41,7 @@ const App = () => (
           <Route path="/fitment-guide" element={<FitmentGuide />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/become-a-dealer" element={<BecomeADealer />} />
-          <Route path="/engineering" element={<Engineering />} />
+          <Route path="/explore-dampers" element={<ExploreDampers />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/handlebar-shaking" element={<BlogHandlebarShaking />} />
@@ -57,6 +57,7 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/warranty" element={<Warranty />} />
           <Route path="/support/ai-installation-assistant" element={<AIInstallationAssistant />} />
+          <Route path="/dealer-portal" element={<DealerPortal />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
