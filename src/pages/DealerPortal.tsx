@@ -200,21 +200,27 @@ const DealerPortal = () => {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-border bg-muted/50">
-                        <th className="px-4 py-2 text-left text-xs font-heading tracking-wider">Product</th>
-                        <th className="px-4 py-2 text-right text-xs font-heading tracking-wider">MAP</th>
-                        <th className="px-4 py-2 text-right text-xs font-heading tracking-wider text-primary">Dealer</th>
+                        <th className="px-3 py-2 text-left text-xs font-heading tracking-wider">Product</th>
+                        <th className="px-3 py-2 text-right text-xs font-heading tracking-wider">MAP</th>
+                        <th className="px-3 py-2 text-right text-xs font-heading tracking-wider text-primary">Dealer</th>
+                        <th className="px-3 py-2 text-right text-xs font-heading tracking-wider">Distributor</th>
+                        <th className="px-3 py-2 text-right text-xs font-heading tracking-wider">Dropship</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="border-b border-border/50">
-                        <td className="px-4 py-2 font-medium">Max20</td>
-                        <td className="px-4 py-2 text-right text-muted-foreground">$379.99</td>
-                        <td className="px-4 py-2 text-right font-bold text-primary">$303.99</td>
+                        <td className="px-3 py-2 font-medium">Max10</td>
+                        <td className="px-3 py-2 text-right text-muted-foreground">$259.99</td>
+                        <td className="px-3 py-2 text-right font-bold text-primary">$194.99</td>
+                        <td className="px-3 py-2 text-right text-muted-foreground">$168.99</td>
+                        <td className="px-3 py-2 text-right text-muted-foreground">$204.99</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-2 font-medium">Max10</td>
-                        <td className="px-4 py-2 text-right text-muted-foreground">$259.99</td>
-                        <td className="px-4 py-2 text-right font-bold text-primary">$194.99</td>
+                        <td className="px-3 py-2 font-medium">Max20</td>
+                        <td className="px-3 py-2 text-right text-muted-foreground">$379.99</td>
+                        <td className="px-3 py-2 text-right font-bold text-primary">$284.99</td>
+                        <td className="px-3 py-2 text-right text-muted-foreground">$246.99</td>
+                        <td className="px-3 py-2 text-right text-muted-foreground">$294.99</td>
                       </tr>
                     </tbody>
                   </table>
