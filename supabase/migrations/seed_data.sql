@@ -262,7 +262,7 @@ BEGIN
     ('10000000-0000-0000-0000-000000000010', 'What if my damper develops a leak?', 'If the leak is due to a manufacturing defect within the warranty period, we will repair or replace the unit. Leaks caused by misuse are not covered.', 2),
     ('10000000-0000-0000-0000-000000000010', 'Can I get a refund on a MaxRacing product?', 'Unopened items can be returned within 30 days. Opened products are eligible for warranty repair or replacement only.', 3),
     ('10000000-0000-0000-0000-000000000010', 'How do I file a warranty claim?', 'Contact us at info@maxracing.us with your order number, proof of purchase, and photos/video describing the issue.', 4),
-    ('10000000-0000-0000-0000-000000000010', 'How do I contact MaxRacing for technical support?', 'You can reach us at info@maxracing.us or call our support line at +1 (727) 377-9546.', 5)
+    ('10000000-0000-0000-0000-000000000010', 'How do I contact MaxRacing for technical support?', 'You can reach us at info@maxracing.us or call our support line at +1 727 377 9546.', 5)
     ON CONFLICT DO NOTHING;
 
     -- 3. Installation Sections

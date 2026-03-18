@@ -1,10 +1,42 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Download, PlayCircle, Search, FileText, Settings, ShieldAlert, Phone, Lock, FileImage, Folder } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const DealerPortal = () => {
+  const [isPricingModalOpen, setIsPricingModalOpen] = useState(false);
+  const [dealerEmail, setDealerEmail] = useState("");
+  const [dealerPassword, setDealerPassword] = useState("");
+  const [isUnlocked, setIsUnlocked] = useState(false);
+
+  const handleUnlockPricing = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!dealerEmail || !dealerEmail.includes("@")) {
+      toast.error("Please enter a valid dealer email address.");
+      return;
+    }
+    if (dealerPassword.length < 4) {
+      toast.error("Password must be at least 4 characters.");
+      return;
+    }
+    // In a production app, save this lead or authenticate with Supabase here
+    setIsUnlocked(true);
+    setIsPricingModalOpen(false);
+    toast.success("Pricing Unlocked! You now have access to wholesale documents.");
+  };
+
+  const handleForgotPassword = () => {
+    if (!dealerEmail || !dealerEmail.includes("@")) {
+      toast.error("Please enter your email first to reset your password.");
+      return;
+    }
+    toast.success("Password recovery link has been sent to your email!");
+  };
   return (
     <Layout>
       <Helmet>
@@ -99,18 +131,79 @@ const DealerPortal = () => {
           </div>
 
           {/* Section 5: Pricing */}
-          <div className="bg-card border border-primary/20 p-8 rounded-xl shadow-lg flex flex-col items-start gap-4 relative overflow-hidden">
+          <div className="bg-card border border-primary/20 p-8 rounded-xl shadow-lg flex flex-col items-start gap-4 relative overflow-hidden transition-all duration-300">
             <div className="absolute top-0 right-0 p-4 opacity-10">
-              <Lock className="w-24 h-24" />
+              {isUnlocked ? <Folder className="w-24 h-24" /> : <Lock className="w-24 h-24" />}
             </div>
-            <div className="p-3 bg-primary/10 rounded-lg text-primary relative z-10">
-              <Lock className="w-8 h-8" />
+            <div className={`p-3 rounded-lg relative z-10 ${isUnlocked ? 'bg-green-500/10 text-green-500' : 'bg-primary/10 text-primary'}`}>
+              {isUnlocked ? <Folder className="w-8 h-8" /> : <Lock className="w-8 h-8" />}
             </div>
             <h3 className="text-2xl font-bold font-heading relative z-10">5. Pricing & MAP</h3>
             <p className="text-muted-foreground text-sm relative z-10">Restricted access to current wholesale pricing and Minimum Advertised Price (MAP) guidelines.</p>
-            <Button variant="outline" className="mt-auto w-full pt-4 relative z-10">
-              Login to View Pricing
-            </Button>
+            
+            {!isUnlocked ? (
+              <Dialog open={isPricingModalOpen} onOpenChange={setIsPricingModalOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="mt-auto w-full pt-4 relative z-10">
+                    Login to View Pricing
+                  </Button>
+                </DialogTrigger>
+                
+                {/* Pricing Gate Modal */}
+                <DialogContent className="sm:max-w-md bg-card border-border/50">
+                  <DialogHeader>
+                    <DialogTitle className="font-heading text-2xl text-foreground">Dealer Access Required</DialogTitle>
+                    <DialogDescription className="text-muted-foreground">
+                      Please enter your authorized dealer email to instantly unlock the current wholesale pricing and MAP documents.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form onSubmit={handleUnlockPricing} className="space-y-6 pt-4">
+                    <div className="space-y-4">
+                      <Input
+                        type="email"
+                        placeholder="dealer@company.com"
+                        value={dealerEmail}
+                        onChange={(e) => setDealerEmail(e.target.value)}
+                        required
+                        className="w-full bg-background/50 border-primary/20 focus-visible:ring-primary"
+                      />
+                      <div className="space-y-1">
+                        <Input
+                          type="password"
+                          placeholder="Password (min. 4 characters)"
+                          value={dealerPassword}
+                          onChange={(e) => setDealerPassword(e.target.value)}
+                          required
+                          minLength={4}
+                          className="w-full bg-background/50 border-primary/20 focus-visible:ring-primary"
+                        />
+                        <div className="text-right mt-1">
+                          <button 
+                            type="button" 
+                            onClick={handleForgotPassword} 
+                            className="text-xs text-primary hover:text-primary/80 hover:underline transition-colors"
+                          >
+                            Forgot Password?
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <Button type="submit" className="w-full font-heading tracking-wider">
+                      UNLOCK PRICING <Lock className="w-4 h-4 ml-2" />
+                    </Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
+            ) : (
+              <div className="mt-auto space-y-2 w-full pt-4 relative z-10 animate-in fade-in duration-500">
+                <Button asChild variant="default" className="w-full justify-between hover:scale-[1.02] transition-transform">
+                  <a href="#">Wholesale Pricing (PDF) <Download className="w-4 h-4 ml-2" /></a>
+                </Button>
+                <Button asChild variant="outline" className="w-full justify-between hover:bg-secondary transition-colors">
+                  <a href="#">MAP Guidelines (PDF) <Download className="w-4 h-4 ml-2" /></a>
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Section 6: Installation Manuals */}
@@ -180,7 +273,6 @@ const DealerPortal = () => {
 
         </div>
       </section>
-
     </Layout>
   );
 };

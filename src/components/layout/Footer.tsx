@@ -94,7 +94,7 @@ const Footer = () => {
             </div>
             <p className="mt-4 space-y-1 font-body text-sm text-muted-foreground">
               <span className="block">info@maxracing.us</span>
-              <a href="tel:+17273779546" className="block hover:text-primary transition-colors">+1 (727) 377-9546</a>
+              <a href="tel:+17273779546" className="block hover:text-primary transition-colors">+1 727 377 9546</a>
             </p>
           </div>
         </div>

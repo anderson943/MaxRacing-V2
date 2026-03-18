@@ -143,7 +143,7 @@ const Contact = () => {
                 <h3 className="mb-4 font-heading text-xl text-foreground">Direct Contact</h3>
                 <div className="space-y-2 font-body text-sm text-muted-foreground">
                   <p><a href="mailto:info@maxracing.us" className="text-primary hover:underline">info@maxracing.us</a></p>
-                  <p><a href="tel:+17273779546" className="text-primary hover:underline">+1 (727) 377-9546</a></p>
+                  <p><a href="tel:+17273779546" className="text-primary hover:underline">+1 727 377 9546</a></p>
                 </div>
               </div>
 

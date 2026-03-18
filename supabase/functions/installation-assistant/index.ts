@@ -107,7 +107,7 @@ You have access to the official MaxRacing installation manuals. Below is the com
 → Increase damping setting by 2 clicks. Check all mounting bolts are torqued correctly.
 
 *Issue: Missing parts in kit*
-→ Contact MaxRacing support: info@maxracing.us or +1 (727) 377-9546
+→ Contact MaxRacing support: info@maxracing.us or +1 727 377 9546
 
 *Issue: Torque value question for specific bolt size*
 → M6 bolts: 8–10 Nm | M8 bolts: 15–20 Nm | M10 bolts: 25–30 Nm (with Loctite 243)

@@ -131,7 +131,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
       { question: "What if my damper develops a leak?", answer: "If the leak is due to a manufacturing defect within the warranty period, we will repair or replace the unit. Leaks caused by misuse are not covered." },
       { question: "Can I get a refund on a MaxRacing product?", answer: "Unopened items can be returned within 30 days. Opened products are eligible for warranty repair or replacement only." },
       { question: "How do I file a warranty claim?", answer: "The process is simple: internationally and in the USA, file through the official Hauer Imports warranty portal (accessible via our Contact or FAQ pages). Provide your name, email, and order number. Claims are typically approved in 1–5 business days, with replacements shipped out immediately after approval." },
-      { question: "How do I contact MaxRacing for technical support?", answer: "You can reach us at info@maxracing.us or call our support line at +1 (727) 377-9546." },
+      { question: "How do I contact MaxRacing for technical support?", answer: "You can reach us at info@maxracing.us or call our support line at +1 727 377 9546." },
     ]
   }
 ];
