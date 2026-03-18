@@ -131,7 +131,7 @@ const DealerPortal = () => {
           </div>
 
           {/* Section 5: Pricing */}
-          <div className="bg-card border border-primary/20 p-8 rounded-xl shadow-lg flex flex-col items-start gap-4 relative overflow-hidden transition-all duration-300">
+          <div className="bg-card border border-border/50 p-8 rounded-xl shadow-lg flex flex-col items-start gap-4 hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
               {isUnlocked ? <Folder className="w-24 h-24" /> : <Lock className="w-24 h-24" />}
             </div>
@@ -195,13 +195,38 @@ const DealerPortal = () => {
                 </DialogContent>
               </Dialog>
             ) : (
-              <div className="mt-auto space-y-2 w-full pt-4 relative z-10 animate-in fade-in duration-500">
-                <Button asChild variant="default" className="w-full justify-between hover:scale-[1.02] transition-transform">
-                  <a href="#">Wholesale Pricing (PDF) <Download className="w-4 h-4 ml-2" /></a>
-                </Button>
-                <Button asChild variant="outline" className="w-full justify-between hover:bg-secondary transition-colors">
-                  <a href="#">MAP Guidelines (PDF) <Download className="w-4 h-4 ml-2" /></a>
-                </Button>
+              <div className="mt-auto space-y-4 w-full pt-4 relative z-10 animate-in fade-in duration-500">
+                <div className="rounded-md border border-border bg-card overflow-hidden">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border bg-muted/50">
+                        <th className="px-4 py-2 text-left text-xs font-heading tracking-wider">Product</th>
+                        <th className="px-4 py-2 text-right text-xs font-heading tracking-wider">MAP</th>
+                        <th className="px-4 py-2 text-right text-xs font-heading tracking-wider text-primary">Dealer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-border/50">
+                        <td className="px-4 py-2 font-medium">Max20</td>
+                        <td className="px-4 py-2 text-right text-muted-foreground">$379.99</td>
+                        <td className="px-4 py-2 text-right font-bold text-primary">$303.99</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 font-medium">Max10</td>
+                        <td className="px-4 py-2 text-right text-muted-foreground">$259.99</td>
+                        <td className="px-4 py-2 text-right font-bold text-primary">$194.99</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="space-y-2">
+                  <Button asChild variant="default" className="w-full justify-between hover:scale-[1.02] transition-transform">
+                    <a href="#">Full Pricelist (PDF) <Download className="w-4 h-4 ml-2" /></a>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full justify-between hover:bg-secondary transition-colors">
+                    <a href="#">MAP Guidelines (PDF) <Download className="w-4 h-4 ml-2" /></a>
+                  </Button>
+                </div>
               </div>
             )}
           </div>
