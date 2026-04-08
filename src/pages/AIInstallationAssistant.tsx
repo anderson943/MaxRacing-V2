@@ -32,8 +32,8 @@ interface Message {
 }
 
 const GOOGLE_API_KEY = (import.meta.env.VITE_GOOGLE_API_KEY || "").trim();
-// Use gemini-2.0-flash for the broadest compatibility and speed
-const MODEL_NAME = "gemini-2.0-flash";
+// Use gemini-2.5-flash for the broadest compatibility and speed
+const MODEL_NAME = "gemini-2.5-flash";
 
 if (!GOOGLE_API_KEY) {
   console.warn("AI Assistant: VITE_GOOGLE_API_KEY is missing from environment variables.");
