@@ -222,7 +222,7 @@ BEGIN
     -- Fitment & Compatibility
     ('10000000-0000-0000-0000-000000000004', 'How do I know if a MaxRacing damper fits my motorcycle?', 'Use our Fitment Guide tool. It contains hundreds of confirmed applications by year, make, and model.', 0),
     ('10000000-0000-0000-0000-000000000004', 'What types of mounting systems does MaxRacing offer?', 'We offer both Top-Mount kits (above the triple clamp) and various side-mount or frame-mount kits depending on your specific motorcycle geometry.', 1),
-    ('10000000-0000-0000-0000-000000000004', 'Do MaxRacing kits include everything I need?', 'Yes. Our bike-specific kits include the damper body, model-specific mounting brackets, and all necessary hardware for installation.', 2),
+    ('10000000-0000-0000-0000-000000000004', 'Do MaxRacing kits include everything I need?', 'Yes. Our bike-specific kits include the damper body, model-specific mounting brackets, and all necessary hardware for installation. Tools are not included.', 2),
     ('10000000-0000-0000-0000-000000000004', 'Can I use a MaxRacing damper on a custom or universal build?', 'Yes, we offer universal kits and individual components for custom projects, though some fabrication of mounting points may be required.', 3),
 
     -- Installation
@@ -251,10 +251,10 @@ BEGIN
     ('10000000-0000-0000-0000-000000000008', 'Does MaxRacing offer drop shipping for dealers?', 'Yes, we offer direct dropshipping to your customers, allowing you to sell without the need to hold local inventory.', 4),
 
     -- Safety & Performance
-    ('10000000-0000-0000-0000-000000000009', 'Will a steering damper make my motorcycle harder to steer?', 'No. At normal steering speeds, the damper is almost invisible. It only provides significant resistance during rapid, dangerous oscillations.', 0),
+    ('10000000-0000-0000-0000-000000000009', 'Will a steering damper make my motorcycle harder to steer?', 'The resistance increases as adjustment levels are selected. However, at lower settings, the damper is almost invisible at normal steering speeds, providing significant resistance only during rapid, dangerous oscillations.', 0),
     ('10000000-0000-0000-0000-000000000009', 'Can a steering damper save me from a crash?', 'While no device can guarantee safety, a damper significantly reduces the risk of crashes caused by tank slappers and front-end instability.', 1),
     ('10000000-0000-0000-0000-000000000009', 'Is a steering damper required for track days?', 'Most racing organizations and track day providers highly recommend or require a steering damper for safety.', 2),
-    ('10000000-0000-0000-0000-000000000009', 'Does a MaxRacing damper affect low-speed handling?', 'No. Our hydraulic valving is designed to provide minimal resistance at low steering speeds, ensuring parking lot maneuvers remain effortless.', 3),
+    ('10000000-0000-0000-0000-000000000009', 'Does a MaxRacing damper affect low-speed handling?', 'The resistance increases as adjustment levels are selected. However, at lower settings, it provides minimal resistance at low steering speeds, ensuring parking lot maneuvers remain effortless.', 3),
 
     -- Warranty & Support
     ('10000000-0000-0000-0000-000000000010', 'Does MaxRacing offer a warranty on its products?', 'Yes. We provide a 3-Year Limited Warranty covering any defects in materials or workmanship from the date of purchase.', 0),

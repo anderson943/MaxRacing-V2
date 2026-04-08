@@ -1,6 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
+import { useState, useMemo } from "react";
 import Layout from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import {
@@ -9,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Search, Loader2 } from "lucide-react";
+import { Search } from "lucide-react";
 
 interface FAQItem {
   question: string;
@@ -67,7 +65,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
     items: [
       { question: "How do I know if a MaxRacing damper fits my motorcycle?", answer: "Use our Fitment Guide tool. It contains hundreds of confirmed applications by year, make, and model." },
       { question: "What types of mounting systems does MaxRacing offer?", answer: "We offer both Top-Mount kits (above the triple clamp) and various side-mount or frame-mount kits depending on your specific motorcycle geometry." },
-      { question: "Do MaxRacing kits include everything I need?", answer: "Yes. Our bike-specific kits include the damper body, model-specific mounting brackets, and all necessary hardware for installation." },
+      { question: "Do MaxRacing kits include everything I need?", answer: "Yes. Our bike-specific kits include the damper body, model-specific mounting brackets, and all necessary hardware for installation. Tools are not included." },
       { question: "Can I use a MaxRacing damper on a custom build?", answer: "No, we do not offer universal kits. All MaxRacing steering dampers are designed with bike-specific mounting hardware to ensure perfect fitment and safety geometry." },
     ]
   },
@@ -116,10 +114,10 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
     title: "Safety & Performance",
     description: "How our dampers keep you safer on the road and track.",
     items: [
-      { question: "Will a steering damper make my motorcycle harder to steer?", answer: "No. At normal steering speeds, the damper is almost invisible. It only provides significant resistance during rapid, dangerous oscillations." },
+      { question: "Will a steering damper make my motorcycle harder to steer?", answer: "The resistance increases according to the selected setup." },
       { question: "Can a steering damper save me from a crash?", answer: "While no device can guarantee safety, a damper significantly reduces the risk of crashes caused by tank slappers and front-end instability." },
       { question: "Is a steering damper required for track days?", answer: "Most racing organizations and track day providers highly recommend or require a steering damper for safety." },
-      { question: "Does a MaxRacing damper affect low-speed handling?", answer: "No. Our hydraulic valving is designed to provide minimal resistance at low steering speeds, ensuring parking lot maneuvers remain effortless." },
+      { question: "Does a MaxRacing damper affect low-speed handling?", answer: "The resistance increases according to the selected setup." },
     ]
   },
   {
@@ -138,51 +136,7 @@ const DEFAULT_FAQ_DATA: FAQCategory[] = [
 
 const FAQ = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [faqData, setFaqData] = useState<FAQCategory[]>(DEFAULT_FAQ_DATA);
-  const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const fetchFAQs = async () => {
-      try {
-        const { data: categories, error: catError } = await supabase
-          .from("faq_categories")
-          .select("id, title, description, display_order")
-          .order("display_order");
-
-        if (catError) throw catError;
-
-        const { data: items, error: itemError } = await supabase
-          .from("faqs")
-          .select("category_id, question, answer, display_order")
-          .order("display_order");
-
-        if (itemError) throw itemError;
-
-        const groupedData: FAQCategory[] = (categories || []).map((cat) => ({
-          title: cat.title,
-          description: cat.description || "",
-          items: (items || [])
-            .filter((item) => item.category_id === cat.id)
-            .map((item) => ({
-              question: item.question,
-              answer: item.answer,
-            })),
-        }));
-
-        if (groupedData.length > 0) {
-          setFaqData(groupedData);
-        }
-      } catch (error: any) {
-        console.error("Error fetching FAQs:", error);
-        // Using fallback data, so we don't show a destructive toast error
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchFAQs();
-  }, [toast]);
+  const [faqData] = useState<FAQCategory[]>(DEFAULT_FAQ_DATA);
 
 
   const filteredData = useMemo(() => {
@@ -281,12 +235,7 @@ const FAQ = () => {
       {/* FAQ Content */}
       <section className="bg-background py-16 md:py-24">
         <div className="container max-w-4xl">
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-20">
-              <Loader2 className="h-10 w-10 animate-spin text-primary" />
-              <p className="mt-4 font-heading text-muted-foreground">Loading expert answers...</p>
-            </div>
-          ) : filteredData.length === 0 ? (
+          {filteredData.length === 0 ? (
             <div className="py-16 text-center">
               <p className="font-heading text-xl text-muted-foreground">
                 No results found for "{searchQuery}"

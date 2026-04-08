@@ -31,7 +31,7 @@ interface Message {
   imagePreview?: string;
 }
 
-const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+const GOOGLE_API_KEY = (import.meta.env.VITE_GOOGLE_API_KEY || "").trim();
 // Use gemini-1.5-flash for the broadest compatibility and speed
 const MODEL_NAME = "gemini-1.5-flash";
 
@@ -39,7 +39,7 @@ if (!GOOGLE_API_KEY) {
   console.warn("AI Assistant: VITE_GOOGLE_API_KEY is missing from environment variables.");
 }
 
-const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY || "");
+const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 
 const SYSTEM_PROMPT = `You are the official MaxRacing Installation Assistant — a precise, professional technical support AI for MaxRacing hydraulic steering dampers and CNC accessories.
 
